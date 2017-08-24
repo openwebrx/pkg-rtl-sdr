@@ -1,7 +1,7 @@
 From 92df068dc5acae9e671eefe1f80626319819c52b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ji=C5=99=C3=AD=20Pinkava?= <j-pi@seznam.cz>
 Date: Tue, 17 Mar 2015 13:21:09 +0100
-Subject: [PATCH 09/11] New functions rtlsdr_set_tuner_bandwidth()
+Subject: [PATCH 09/16] New functions rtlsdr_set_tuner_bandwidth()
 
 Signed-off-by: Steve Markgraf <steve@steve-m.de>
 ---
@@ -109,5 +109,5 @@ index 0ee4123..0650606 100644
  	}
  
 -- 
-2.1.4
+2.11.0
 

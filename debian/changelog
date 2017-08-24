@@ -1,3 +1,10 @@
+rtl-sdr (0.5.3-12) unstable; urgency=medium
+
+  * add new HanfTek dongle
+  * Bias T support (Closes: #854378, #842249)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Wed, 23 Aug 2017 23:31:27 -0400
+
 rtl-sdr (0.5.3-11) unstable; urgency=medium
 
   * correct invocation of rm_conffile (Thanks Chris!) (Closes: #838161)

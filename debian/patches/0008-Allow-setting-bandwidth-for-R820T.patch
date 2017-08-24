@@ -1,7 +1,7 @@
 From d892279085491f9c610388da89bc701ef6ac632c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ji=C5=99=C3=AD=20Pinkava?= <j-pi@seznam.cz>
 Date: Tue, 17 Mar 2015 13:19:20 +0100
-Subject: [PATCH 08/11] Allow setting bandwidth for R820T
+Subject: [PATCH 08/16] Allow setting bandwidth for R820T
 
 This improves SDR performence for nearby channel interference.
 As a sideeffect also improves dynamic range becase ADC is not overloaded
@@ -156,5 +156,5 @@ index e03e034..f620238 100644
  {
  	int rc = -1;
 -- 
-2.1.4
+2.11.0
 

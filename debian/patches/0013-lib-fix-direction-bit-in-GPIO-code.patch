@@ -1,0 +1,30 @@
+From ba64a7459a43652354990855176a7d8dad5b9d54 Mon Sep 17 00:00:00 2001
+From: Lucas Teske <lucas@teske.net.br>
+Date: Wed, 17 Aug 2016 20:31:33 -0300
+Subject: [PATCH 13/16] lib: fix direction bit in GPIO code
+
+source: http://lea.hamradio.si/~s57uuu/mischam/rtlsdr/ports.html
+
+* Removed unnecessary comment of old code.
+Signed-off-by: Fabian P. Schmidt <kerel-fs@gmx.de>
+Signed-off-by: Steve Markgraf <steve@steve-m.de>
+---
+ src/librtlsdr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/librtlsdr.c b/src/librtlsdr.c
+index 9b7ba52..e2c3c73 100644
+--- a/src/librtlsdr.c
++++ b/src/librtlsdr.c
+@@ -570,7 +570,7 @@ void rtlsdr_set_gpio_output(rtlsdr_dev_t *dev, uint8_t gpio)
+ 	gpio = 1 << gpio;
+ 
+ 	r = rtlsdr_read_reg(dev, SYSB, GPD, 1);
+-	rtlsdr_write_reg(dev, SYSB, GPO, r & ~gpio, 1);
++	rtlsdr_write_reg(dev, SYSB, GPD, r & ~gpio, 1);
+ 	r = rtlsdr_read_reg(dev, SYSB, GPOE, 1);
+ 	rtlsdr_write_reg(dev, SYSB, GPOE, r | gpio, 1);
+ }
+-- 
+2.11.0
+

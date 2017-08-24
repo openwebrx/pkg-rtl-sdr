@@ -1,7 +1,7 @@
 From 03a40c44f502f877f924f971312c26dbdccdfd62 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Sat, 8 Feb 2014 14:46:26 +0100
-Subject: [PATCH 01/11] change version to 0.5.3git
+Subject: [PATCH 01/16] change version to 0.5.3git
 
 Signed-off-by: Steve Markgraf <steve@steve-m.de>
 ---
@@ -22,5 +22,5 @@ index 5a4d9fc..0597600 100644
  
  ########################################################################
 -- 
-2.1.4
+2.11.0
 

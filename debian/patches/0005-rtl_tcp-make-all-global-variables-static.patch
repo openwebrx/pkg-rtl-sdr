@@ -1,7 +1,7 @@
 From 6ee557360645da158e3065111349c318894b497b Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Mon, 10 Feb 2014 23:59:21 +0100
-Subject: [PATCH 05/11] rtl_tcp: make all global variables static
+Subject: [PATCH 05/16] rtl_tcp: make all global variables static
 
 Signed-off-by: Steve Markgraf <steve@steve-m.de>
 ---
@@ -25,5 +25,5 @@ index a54666a..317e0f3 100644
  static volatile int do_exit = 0;
  
 -- 
-2.1.4
+2.11.0
 

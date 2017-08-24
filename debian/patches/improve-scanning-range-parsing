@@ -3,7 +3,7 @@ Author: A. Maitland Bottoms <bottoms@debian.org>
 
 --- a/src/rtl_fm.c
 +++ b/src/rtl_fm.c
-@@ -925,8 +925,21 @@
+@@ -926,8 +926,21 @@
  	int i;
  	start = arg;
  	stop = strchr(start, ':') + 1;
@@ -27,7 +27,7 @@ Author: A. Maitland Bottoms <bottoms@debian.org>
  	{
 --- a/src/rtl_power.c
 +++ b/src/rtl_power.c
-@@ -436,8 +436,16 @@
+@@ -437,8 +437,16 @@
  	/* hacky string parsing */
  	start = arg;
  	stop = strchr(start, ':') + 1;

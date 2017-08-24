@@ -1,0 +1,59 @@
+From 2be1612e604f950ba21ef6ff12488eab62e66ad5 Mon Sep 17 00:00:00 2001
+From: Lucas Teske <lucas@teske.net.br>
+Date: Wed, 17 Aug 2016 10:14:57 -0300
+Subject: [PATCH 14/16] lib: Use GPIO P0 to toggle an (optional) bias-t
+
+At least one distributor of rtl-sdr dongles (rtl-sdr.com) added
+a bias-t to their dongles which could be toggled via GPIO P0 of the
+RTL2832U chip.
+
+source: http://www.rtl-sdr.com/rtl-sdr-blog-v-3-dongles-user-guide/
+
+Signed-off-by: Steve Markgraf <steve@steve-m.de>
+---
+ include/rtl-sdr.h |  9 +++++++++
+ src/librtlsdr.c   | 11 +++++++++++
+ 2 files changed, 20 insertions(+)
+
+diff --git a/include/rtl-sdr.h b/include/rtl-sdr.h
+index fe64bea..3ed13ae 100644
+--- a/include/rtl-sdr.h
++++ b/include/rtl-sdr.h
+@@ -380,6 +380,15 @@ RTLSDR_API int rtlsdr_read_async(rtlsdr_dev_t *dev,
+  */
+ RTLSDR_API int rtlsdr_cancel_async(rtlsdr_dev_t *dev);
+ 
++/*!
++ * Enable or disable the bias tee on GPIO PIN 0.
++ *
++ * \param dev the device handle given by rtlsdr_open()
++ * \param on  1 for Bias T on. 0 for Bias T off.
++ * \return -1 if device is not initialized. 0 otherwise.
++ */
++RTLSDR_API int rtlsdr_set_bias_tee(rtlsdr_dev_t *dev, int on);
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/src/librtlsdr.c b/src/librtlsdr.c
+index e2c3c73..b369a5d 100644
+--- a/src/librtlsdr.c
++++ b/src/librtlsdr.c
+@@ -1937,3 +1937,14 @@ int rtlsdr_i2c_read_fn(void *dev, uint8_t addr, uint8_t *buf, int len)
+ 
+ 	return -1;
+ }
++
++int rtlsdr_set_bias_tee(rtlsdr_dev_t *dev, int on)
++{
++	if (!dev)
++		return -1;
++
++	rtlsdr_set_gpio_output(dev, 0);
++	rtlsdr_set_gpio_bit(dev, 0, on);
++
++	return 0;
++}
+-- 
+2.11.0
+

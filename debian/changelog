@@ -1,3 +1,10 @@
+rtl-sdr (0.5.3-13) unstable; urgency=medium
+
+  * build with libusb-1.0-0-dev stub on hurd-i386
+  * initial ipv6 support for rtl_tcp...
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Thu, 23 Nov 2017 15:59:40 -0500
+
 rtl-sdr (0.5.3-12) unstable; urgency=medium
 
   * add new HanfTek dongle

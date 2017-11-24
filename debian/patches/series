@@ -17,3 +17,4 @@ improve-librtlsdr-pc-file
 improve-scanning-range-parsing
 hurd-usb
 use-udev-uaccess-rules
+ipv6-support

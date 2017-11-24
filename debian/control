@@ -17,7 +17,7 @@ Section: libdevel
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: librtlsdr0 (= ${binary:Version}),
-         libusb-1.0-0-dev [linux-any],
+         libusb-1.0-0-dev [!kfreebsd-any],
          libusb2-dev [kfreebsd-any],
          ${misc:Depends}
 Description: Software defined radio receiver for Realtek RTL2832U (development)

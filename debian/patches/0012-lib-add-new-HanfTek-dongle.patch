@@ -1,7 +1,7 @@
 From e3e6ee23b7f052327bf64c6908f5c09b75029edc Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Sun, 27 Nov 2016 12:19:44 +0100
-Subject: [PATCH 12/16] lib: add new HanfTek dongle
+Subject: [PATCH 12/19] lib: add new HanfTek dongle
 
 Signed-off-by: Steve Markgraf <steve@steve-m.de>
 ---

@@ -1,7 +1,7 @@
 From fa3a113b77b6ed2738778a52ae4f9ce4e6f18ea3 Mon Sep 17 00:00:00 2001
 From: Dimitri Stolnikov <horiz0n@gmx.net>
 Date: Mon, 12 Jun 2017 00:04:05 +0200
-Subject: [PATCH 15/16] rtl_tcp: add command for bias tee control
+Subject: [PATCH 15/19] rtl_tcp: add command for bias tee control
 
 ---
  src/rtl_tcp.c | 4 ++++

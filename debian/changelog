@@ -1,3 +1,12 @@
+rtl-sdr (0.5.3-14) unstable; urgency=medium
+
+  * update to v0.5.3-20-g4520f00 (Closes: #892974)
+  * minimal ipv6 support (Closes: #870804)
+  * VCS to salsa
+  * AppStream metadata.xml
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 16 Apr 2018 20:45:53 -0400
+
 rtl-sdr (0.5.3-13) unstable; urgency=medium
 
   * build with libusb-1.0-0-dev stub on hurd-i386

@@ -1,7 +1,7 @@
 From 5b0137abaf179e6ca4e90a6ea987a61823a09bb1 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Sun, 9 Feb 2014 15:50:32 +0100
-Subject: [PATCH 03/16] lib: handle events after canceling transfers
+Subject: [PATCH 03/19] lib: handle events after canceling transfers
 
 Otherwise the new transfer status does not propagate
 into the xfer->status and we try to cancel all transfers

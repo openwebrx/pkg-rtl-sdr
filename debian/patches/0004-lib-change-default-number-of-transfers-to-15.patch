@@ -1,7 +1,7 @@
 From 89f73b183f2dac9c0dd75beca4cf2f77f20c4a36 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Mon, 10 Feb 2014 23:57:19 +0100
-Subject: [PATCH 04/16] lib: change default number of transfers to 15
+Subject: [PATCH 04/19] lib: change default number of transfers to 15
 
 So far we had 32 * 256KB which was a bit overkill,
 15 are more than enough.

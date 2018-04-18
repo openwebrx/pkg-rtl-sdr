@@ -1,7 +1,7 @@
 From ba64a7459a43652354990855176a7d8dad5b9d54 Mon Sep 17 00:00:00 2001
 From: Lucas Teske <lucas@teske.net.br>
 Date: Wed, 17 Aug 2016 20:31:33 -0300
-Subject: [PATCH 13/16] lib: fix direction bit in GPIO code
+Subject: [PATCH 13/19] lib: fix direction bit in GPIO code
 
 source: http://lea.hamradio.si/~s57uuu/mischam/rtlsdr/ports.html
 

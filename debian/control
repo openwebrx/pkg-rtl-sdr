@@ -1,16 +1,16 @@
 Source: rtl-sdr
 Section: comm
-Priority: extra
+Priority: optional
 Maintainer: A. Maitland Bottoms <bottoms@debian.org>
 Build-Depends: cmake,
                debhelper (>= 9.0.0~),
                libusb-1.0-0-dev [linux-any],
                libusb-dev [hurd-i386],
                libusb2-dev [kfreebsd-any]
-Standards-Version: 3.9.8
+Standards-Version: 4.1.4
 Homepage: http://sdr.osmocom.org/trac/wiki/rtl-sdr
-Vcs-Git: https://anonscm.debian.org/git/users/bottoms/pkg-rtl-sdr.git
-Vcs-Browser: https://anonscm.debian.org/cgit/users/bottoms/pkg-rtl-sdr.git/
+Vcs-Browser: https://salsa.debian.org/bottoms/pkg-rtl-sdr
+Vcs-Git: https://salsa.debian.org/bottoms/pkg-rtl-sdr.git
 
 Package: librtlsdr-dev
 Section: libdevel

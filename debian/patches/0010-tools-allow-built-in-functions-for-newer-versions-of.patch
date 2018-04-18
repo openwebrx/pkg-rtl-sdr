@@ -1,7 +1,7 @@
 From 5c376fc79c919c0e16a832328c92f5213f0cdd54 Mon Sep 17 00:00:00 2001
 From: Hoernchen <la@tfc-server.de>
 Date: Tue, 9 Jun 2015 01:37:46 +0200
-Subject: [PATCH 10/16] tools: allow built-in functions for newer versions of
+Subject: [PATCH 10/19] tools: allow built-in functions for newer versions of
  MSVC
 
 ---

@@ -1,7 +1,7 @@
 From 18bf26989c926a5db4fca29e7d859af42af1437c Mon Sep 17 00:00:00 2001
 From: hayati ayguen <h_ayguen@web.de>
 Date: Sun, 11 Jun 2017 00:18:53 +0200
-Subject: [PATCH 16/16] Add option '-T' for activating bias-T in
+Subject: [PATCH 16/19] Add option '-T' for activating bias-T in
  rtl_(adsb|fm|power|tcp)
 
 * added debug output when activating

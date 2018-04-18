@@ -1,7 +1,7 @@
 From d447a2e9830463ff83f6dcaef59b5684ff1df255 Mon Sep 17 00:00:00 2001
 From: Dimitri Stolnikov <horiz0n@gmx.net>
 Date: Tue, 26 Aug 2014 21:26:26 +0200
-Subject: [PATCH 06/16] cmake: include resource file for MSVC builds
+Subject: [PATCH 06/19] cmake: include resource file for MSVC builds
 
 ---
  src/CMakeLists.txt | 62 +++++++++++++++++++++++++++++++-----------------------

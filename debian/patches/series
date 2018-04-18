@@ -13,6 +13,9 @@
 0014-lib-Use-GPIO-P0-to-toggle-an-optional-bias-t.patch
 0015-rtl_tcp-add-command-for-bias-tee-control.patch
 0016-Add-option-T-for-activating-bias-T-in-rtl_-adsb-fm-p.patch
+0017-fix-for-msvc14.patch
+0018-rtl_test-Support-PPM-error-measurement-on-Windows.patch
+0019-lib-fix-FC0012-reset-GPIO.patch
 improve-librtlsdr-pc-file
 improve-scanning-range-parsing
 hurd-usb

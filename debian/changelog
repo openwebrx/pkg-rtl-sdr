@@ -1,3 +1,11 @@
+rtl-sdr (0.5.4-1) unstable; urgency=medium
+
+  * New upstream release
+  * update to v0.5.4-3-ga854ae8
+    use USB zero-copy transfers if possible
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 12 May 2018 16:49:43 -0400
+
 rtl-sdr (0.5.3-14) unstable; urgency=medium
 
   * update to v0.5.3-20-g4520f00 (Closes: #892974)

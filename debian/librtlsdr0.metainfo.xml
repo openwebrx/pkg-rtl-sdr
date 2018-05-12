@@ -23,7 +23,7 @@ low-cost DVB-T/DAB(+) USB dongles based on the Realtek RTL2832U chip.
     <modalias>usb:v0CCDp00B7d*</modalias>
     <modalias>usb:v0CCDp00B8d*</modalias>
     <modalias>usb:v0CCDp00B9d*</modalias>
-    <modalias>usb:V0CCDp00C0d*</modalias>
+    <modalias>usb:v0CCDp00C0d*</modalias>
     <modalias>usb:v0CCDp00C6d*</modalias>
     <modalias>usb:v0CCDp00D3d*</modalias>
     <modalias>usb:v0CCDp00D7d*</modalias>

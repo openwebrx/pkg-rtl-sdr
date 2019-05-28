@@ -1,3 +1,9 @@
+rtl-sdr (0.6-2) unstable; urgency=medium
+
+  * modernize-cmake fixed to generate valid Pkg Config File (Closes: #925916)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 28 May 2019 12:04:14 -0400
+
 rtl-sdr (0.6-1) unstable; urgency=medium
 
   * New upstream release

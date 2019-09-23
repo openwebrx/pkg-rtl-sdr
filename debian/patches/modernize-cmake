@@ -69,8 +69,8 @@
  
  ########################################################################
  # Create uninstall target
-@@ -127,9 +111,17 @@
- endif (DETACH_KERNEL_DRIVER)
+@@ -135,9 +119,17 @@
+ endif (ENABLE_ZEROCOPY)
  
  ########################################################################
 +# Install public header files
@@ -88,7 +88,20 @@
  add_subdirectory(src)
  
  ########################################################################
-@@ -165,10 +152,38 @@
+@@ -162,9 +154,9 @@
+ ENDIF(CMAKE_CROSSCOMPILING)
+ 
+ set(prefix ${CMAKE_INSTALL_PREFIX})
+-set(exec_prefix \${prefix})
+-set(libdir \${exec_prefix}/${LIB_INSTALL_DIR})
+-set(includedir \${prefix}/include)
++set(exec_prefix \${prefix}/${CMAKE_INSTALL_LIBEXECDIR})
++set(libdir \${prefix}/${CMAKE_INSTALL_LIBDIR})
++set(includedir \${prefix}/${CMAKE_INSTALL_INCLUDEDIR})
+ 
+ CONFIGURE_FILE(
+     ${CMAKE_CURRENT_SOURCE_DIR}/librtlsdr.pc.in
+@@ -173,10 +165,38 @@
  
  INSTALL(
      FILES ${CMAKE_CURRENT_BINARY_DIR}/librtlsdr.pc

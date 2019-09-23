@@ -1,3 +1,9 @@
+rtl-sdr (0.6-3) unstable; urgency=medium
+
+  * refactor to use CMake GNUInstallDirs variables (Closes: #939800)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 17 Sep 2019 16:46:58 -0500
+
 rtl-sdr (0.6-2) unstable; urgency=medium
 
   * modernize-cmake fixed to generate valid Pkg Config File (Closes: #925916)

@@ -1,7 +1,11 @@
+# 0001-change-version-to-0.6git.patch
 0002-lib-Add-workaround-for-Linux-usbfs-mmap-bug.patch
-improve-librtlsdr-pc-file
+0003-contrib-jenkins.sh-run-make-maintainer-clean.patch
+0004-lib-fix-memory-leak-in-rtlsdr_open.patch
+0005-lib-disable-usbfs-zero-copy-support-by-default.patch
 improve-scanning-range-parsing
 hurd-usb
 use-udev-uaccess-rules
 ipv6-support
 modernize-cmake
+improve-librtlsdr-pc-file

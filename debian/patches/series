@@ -4,7 +4,6 @@
 0004-lib-fix-memory-leak-in-rtlsdr_open.patch
 0005-lib-disable-usbfs-zero-copy-support-by-default.patch
 improve-scanning-range-parsing
-hurd-usb
 use-udev-uaccess-rules
 ipv6-support
 modernize-cmake

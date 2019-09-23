@@ -1,3 +1,10 @@
+rtl-sdr (0.6-4) unstable; urgency=medium
+
+  * update dh compat
+  * use libusb-1.0 on Hurd, thanks for patch Pino! (Closes: #940990)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 23 Sep 2019 15:13:54 -0400
+
 rtl-sdr (0.6-3) unstable; urgency=medium
 
   * refactor to use CMake GNUInstallDirs variables (Closes: #939800)

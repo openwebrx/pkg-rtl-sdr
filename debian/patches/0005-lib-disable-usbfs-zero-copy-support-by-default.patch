@@ -1,7 +1,7 @@
 From 81833a1cf6288fee93a9157c0f60cafb5ec340b9 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Tue, 16 Jul 2019 23:45:57 +0200
-Subject: [PATCH 5/5] lib: disable usbfs zero-copy support by default
+Subject: [PATCH 05/11] lib: disable usbfs zero-copy support by default
 
 Although we added a detection mechanism for the presence of the Kernel
 bug earlier, reading from the incorrectly mapped memory might cause a
@@ -65,5 +65,5 @@ index d72a0f5..213e96c 100644
  
  	dev->use_zerocopy = 1;
 -- 
-2.23.0
+2.20.1
 

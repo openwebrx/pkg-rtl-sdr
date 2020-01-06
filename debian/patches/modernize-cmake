@@ -1,8 +1,28 @@
+From a2818cbacb109e7fa62479dc8b7095df11234790 Mon Sep 17 00:00:00 2001
+From: "A. Maitland Bottoms" <bottoms@debian.org>
+Date: Sun, 5 Jan 2020 18:45:42 -0500
+Subject: [PATCH 5/5] modernize cmake
+
+---
+ CMakeLists.txt                  |  78 ++++++----
+ cmake/Modules/FindLibUSB.cmake  |  55 -------
+ cmake/Modules/FindThreads.cmake | 246 --------------------------------
+ cmake/rtlsdrConfig.cmake        |   8 ++
+ include/CMakeLists.txt          |  27 ----
+ src/CMakeLists.txt              | 109 +++++++-------
+ 6 files changed, 113 insertions(+), 410 deletions(-)
+ delete mode 100644 cmake/Modules/FindLibUSB.cmake
+ delete mode 100644 cmake/Modules/FindThreads.cmake
+ create mode 100644 cmake/rtlsdrConfig.cmake
+ delete mode 100644 include/CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8b175e5..329d668 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -1,4 +1,4 @@
 -# Copyright 2012 OSMOCOM Project
-+# Copyright 2012,2018 OSMOCOM Project
++# Copyright 2012,2019 OSMOCOM Project
  #
  # This file is part of rtl-sdr
  #
@@ -15,13 +35,13 @@
  project(rtlsdr C)
  
  #select the release build type by default to get optimization flags
-@@ -29,13 +29,12 @@
+@@ -29,13 +29,12 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
     message(STATUS "Build type not specified: defaulting to release.")
  endif(NOT CMAKE_BUILD_TYPE)
 -set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE} CACHE STRING "")
  
- list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
+ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
  
 -if(NOT LIB_INSTALL_DIR)
 -   set(LIB_INSTALL_DIR lib)
@@ -32,7 +52,7 @@
  
  # Set the version information here
  set(VERSION_INFO_MAJOR_VERSION 0) # increment major on api compatibility changes
-@@ -63,12 +62,12 @@
+@@ -63,12 +62,12 @@ endif()
  ########################################################################
  # Find build dependencies
  ########################################################################
@@ -47,7 +67,7 @@
  
  if(NOT LIBUSB_FOUND)
      message(FATAL_ERROR "LibUSB 1.0 required to compile rtl-sdr")
-@@ -76,21 +75,6 @@
+@@ -76,21 +75,6 @@ endif()
  if(NOT THREADS_FOUND)
      message(FATAL_ERROR "pthreads(-win32) required to compile rtl-sdr")
  endif()
@@ -55,7 +75,7 @@
 -# Setup the include and linker paths
 -########################################################################
 -include_directories(
--    ${CMAKE_SOURCE_DIR}/include
+-    ${PROJECT_SOURCE_DIR}/include
 -    ${LIBUSB_INCLUDE_DIR}
 -    ${THREADS_PTHREADS_INCLUDE_DIR}
 -)
@@ -69,10 +89,11 @@
  
  ########################################################################
  # Create uninstall target
-@@ -135,9 +119,17 @@
+@@ -134,10 +118,18 @@ else (ENABLE_ZEROCOPY)
+     message (STATUS "Building with usbfs zero-copy support disabled, use -DENABLE_ZEROCOPY=ON to enable")
  endif (ENABLE_ZEROCOPY)
  
- ########################################################################
++########################################################################
 +# Install public header files
 +########################################################################
 +install(FILES
@@ -81,27 +102,29 @@
 +    DESTINATION include
 +)
 +
-+########################################################################
+ ########################################################################
  # Add subdirectories
  ########################################################################
 -add_subdirectory(include)
  add_subdirectory(src)
  
  ########################################################################
-@@ -162,9 +154,9 @@
+@@ -162,10 +154,10 @@ IF(CMAKE_CROSSCOMPILING)
  ENDIF(CMAKE_CROSSCOMPILING)
  
  set(prefix ${CMAKE_INSTALL_PREFIX})
 -set(exec_prefix \${prefix})
 -set(libdir \${exec_prefix}/${LIB_INSTALL_DIR})
 -set(includedir \${prefix}/include)
+-
 +set(exec_prefix \${prefix}/${CMAKE_INSTALL_LIBEXECDIR})
 +set(libdir \${prefix}/${CMAKE_INSTALL_LIBDIR})
 +set(includedir \${prefix}/${CMAKE_INSTALL_INCLUDEDIR})
- 
++ 
  CONFIGURE_FILE(
      ${CMAKE_CURRENT_SOURCE_DIR}/librtlsdr.pc.in
-@@ -173,10 +165,38 @@
+     ${CMAKE_CURRENT_BINARY_DIR}/librtlsdr.pc
+@@ -173,9 +165,37 @@ CONFIGURE_FILE(
  
  INSTALL(
      FILES ${CMAKE_CURRENT_BINARY_DIR}/librtlsdr.pc
@@ -109,7 +132,7 @@
 +    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
  )
  
- ########################################################################
++########################################################################
 +# Create CMake Config File
 +########################################################################
 +write_basic_package_version_file(
@@ -137,40 +160,12 @@
 +  COMPONENT Devel
 +  )
 +
-+########################################################################
+ ########################################################################
  # Print Summary
  ########################################################################
- MESSAGE(STATUS "Building for version: ${VERSION} / ${LIBVER}")
---- a/include/CMakeLists.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--# Copyright 2012 OSMOCOM Project
--#
--# This file is part of rtl-sdr
--#
--# GNU Radio is free software; you can redistribute it and/or modify
--# it under the terms of the GNU General Public License as published by
--# the Free Software Foundation; either version 3, or (at your option)
--# any later version.
--#
--# GNU Radio is distributed in the hope that it will be useful,
--# but WITHOUT ANY WARRANTY; without even the implied warranty of
--# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--# GNU General Public License for more details.
--#
--# You should have received a copy of the GNU General Public License
--# along with GNU Radio; see the file COPYING.  If not, write to
--# the Free Software Foundation, Inc., 51 Franklin Street,
--# Boston, MA 02110-1301, USA.
--
--########################################################################
--# Install public header files
--########################################################################
--install(FILES
--    rtl-sdr.h
--    rtl-sdr_export.h
--    DESTINATION include
--)
+diff --git a/cmake/Modules/FindLibUSB.cmake b/cmake/Modules/FindLibUSB.cmake
+deleted file mode 100644
+index bbf5593..0000000
 --- a/cmake/Modules/FindLibUSB.cmake
 +++ /dev/null
 @@ -1,55 +0,0 @@
@@ -185,7 +180,7 @@
 -  )
 -
 -#standard library name for libusb-1.0
--set(libusb1_library_names usb-1.0)
+-set(libusb1_library_names usb-1.0 libusb-1.0)
 -
 -#libusb-1.0 compatible library on freebsd
 -if((CMAKE_SYSTEM_NAME STREQUAL "FreeBSD") OR (CMAKE_SYSTEM_NAME STREQUAL "kFreeBSD"))
@@ -229,6 +224,9 @@
 -mark_as_advanced(LIBUSB_INCLUDE_DIR LIBUSB_LIBRARIES)
 -
 -endif(NOT LIBUSB_FOUND)
+diff --git a/cmake/Modules/FindThreads.cmake b/cmake/Modules/FindThreads.cmake
+deleted file mode 100644
+index 8028b15..0000000
 --- a/cmake/Modules/FindThreads.cmake
 +++ /dev/null
 @@ -1,246 +0,0 @@
@@ -478,6 +476,55 @@
 -ELSE()
 -  FIND_PACKAGE_HANDLE_STANDARD_ARGS(Threads DEFAULT_MSG Threads_FOUND)
 -ENDIF()
+diff --git a/cmake/rtlsdrConfig.cmake b/cmake/rtlsdrConfig.cmake
+new file mode 100644
+index 0000000..eeff2f3
+--- /dev/null
++++ b/cmake/rtlsdrConfig.cmake
+@@ -0,0 +1,8 @@
++include(FindPkgConfig)
++pkg_check_modules(LIBUSB libusb-1.0 IMPORTED_TARGET)
++
++get_filename_component(RTLSDR_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
++
++if(NOT TARGET rtlsdr::rtlsdr)
++  include("${RTLSDR_CMAKE_DIR}/rtlsdrTargets.cmake")
++endif()
+diff --git a/include/CMakeLists.txt b/include/CMakeLists.txt
+deleted file mode 100644
+index 507c0c7..0000000
+--- a/include/CMakeLists.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-# Copyright 2012 OSMOCOM Project
+-#
+-# This file is part of rtl-sdr
+-#
+-# GNU Radio is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 3, or (at your option)
+-# any later version.
+-#
+-# GNU Radio is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with GNU Radio; see the file COPYING.  If not, write to
+-# the Free Software Foundation, Inc., 51 Franklin Street,
+-# Boston, MA 02110-1301, USA.
+-
+-########################################################################
+-# Install public header files
+-########################################################################
+-install(FILES
+-    rtl-sdr.h
+-    rtl-sdr_export.h
+-    DESTINATION include
+-)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 5d6aff0..959a9d9 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
 @@ -17,53 +17,52 @@
@@ -501,7 +548,7 @@
 -# Set up Windows DLL resource files
 -########################################################################
 -IF(MSVC)
--    include(${CMAKE_SOURCE_DIR}/cmake/Modules/Version.cmake)
+-    include(${PROJECT_SOURCE_DIR}/cmake/Modules/Version.cmake)
 -
 -    configure_file(
 -        ${CMAKE_CURRENT_SOURCE_DIR}/rtlsdr.rc.in
@@ -520,6 +567,7 @@
 -set_target_properties(rtlsdr_shared PROPERTIES OUTPUT_NAME rtlsdr)
 -set_target_properties(rtlsdr_shared PROPERTIES SOVERSION ${MAJOR_VERSION})
 -set_target_properties(rtlsdr_shared PROPERTIES VERSION ${LIBVER})
+-
 +add_library(rtlsdr SHARED librtlsdr.c
 +  tuner_e4k.c tuner_fc0012.c tuner_fc0013.c tuner_fc2580.c tuner_r82xx.c)
 +target_link_libraries(rtlsdr PkgConfig::LIBUSB)
@@ -532,7 +580,7 @@
 +set_target_properties(rtlsdr PROPERTIES SOVERSION ${MAJOR_VERSION})
 +set_target_properties(rtlsdr PROPERTIES VERSION ${LIBVER})
 +generate_export_header(rtlsdr)
- 
++ 
  ########################################################################
  # Setup static library variant
  ########################################################################
@@ -568,29 +616,29 @@
  
  ########################################################################
  # Setup libraries used in executables
-@@ -71,13 +70,14 @@
- add_library(convenience_static STATIC
+@@ -72,13 +71,13 @@ add_library(convenience_static STATIC
      convenience/convenience.c
  )
--
-+target_include_directories(convenience_static
-+  PRIVATE ${CMAKE_SOURCE_DIR}/include)
+ 
++target_include_directories(convenience_static PRIVATE
++  ${CMAKE_SOURCE_DIR}/include)
  if(WIN32)
  add_library(libgetopt_static STATIC
      getopt/getopt.c
  )
- target_link_libraries(convenience_static
+-target_link_libraries(convenience_static
 -    rtlsdr_shared
-+    rtlsdr
- )
+-)
++target_link_libraries(convenience_static rtlsdr)
  endif()
  
-@@ -91,33 +91,33 @@
- add_executable(rtl_eeprom rtl_eeprom.c)
+ ########################################################################
+@@ -92,37 +91,37 @@ add_executable(rtl_eeprom rtl_eeprom.c)
  add_executable(rtl_adsb rtl_adsb.c)
  add_executable(rtl_power rtl_power.c)
--set(INSTALL_TARGETS rtlsdr_shared rtlsdr_static rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power)
-+set(INSTALL_TARGETS rtlsdr rtlsdr_static rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power)
+ add_executable(rtl_biast rtl_biast.c)
+-set(INSTALL_TARGETS rtlsdr_shared rtlsdr_static rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power rtl_biast)
++set(INSTALL_TARGETS rtlsdr rtlsdr_static rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power rtl_biast)
  
 -target_link_libraries(rtl_sdr rtlsdr_shared convenience_static
 +target_link_libraries(rtl_sdr rtlsdr convenience_static
@@ -627,7 +675,12 @@
      ${LIBUSB_LIBRARIES}
      ${CMAKE_THREAD_LIBS_INIT}
  )
-@@ -151,8 +151,12 @@
+-target_link_libraries(rtl_biast rtlsdr_shared convenience_static
++target_link_libraries(rtl_biast rtlsdr convenience_static
+     ${LIBUSB_LIBRARIES}
+     ${CMAKE_THREAD_LIBS_INIT}
+ )
+@@ -159,8 +158,12 @@ endif()
  ########################################################################
  # Install built library files & utilities
  ########################################################################
@@ -642,17 +695,9 @@
 +install(TARGETS rtlsdr_static EXPORT RTLSDR-export
 +  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} # .so/.dylib file
 +  )
-+install(TARGETS rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power
++install(TARGETS rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power rtl_biast
 +  DESTINATION ${CMAKE_INSTALL_BINDIR}
 +  )
---- /dev/null
-+++ b/cmake/rtlsdrConfig.cmake
-@@ -0,0 +1,8 @@
-+include(FindPkgConfig)
-+pkg_check_modules(LIBUSB libusb-1.0 IMPORTED_TARGET)
-+
-+get_filename_component(RTLSDR_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-+
-+if(NOT TARGET rtlsdr::rtlsdr)
-+  include("${RTLSDR_CMAKE_DIR}/rtlsdrTargets.cmake")
-+endif()
+-- 
+2.20.1
+

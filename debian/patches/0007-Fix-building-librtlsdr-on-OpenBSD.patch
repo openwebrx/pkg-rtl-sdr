@@ -1,0 +1,30 @@
+From 9d05150a642b2426d844e16d3d024a4a9784f921 Mon Sep 17 00:00:00 2001
+From: Brian Waters <brian@brianmwaters.net>
+Date: Mon, 11 Nov 2019 14:28:10 +0100
+Subject: [PATCH 07/11] Fix building librtlsdr on OpenBSD
+
+Gets rid of librt, which doesn't exist on OpenBSD. The version of
+librtlsdr in the OpenBSD ports tree is extremely old (~2013), so this
+should help some users.
+
+Tested against tag 0.6.0, but it should apply just fine to HEAD.
+---
+ src/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 07d64ab..015fd48 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -125,7 +125,7 @@ if(UNIX)
+ target_link_libraries(rtl_fm m)
+ target_link_libraries(rtl_adsb m)
+ target_link_libraries(rtl_power m)
+-if(APPLE)
++if(APPLE OR CMAKE_SYSTEM MATCHES "OpenBSD")
+     target_link_libraries(rtl_test m)
+ else()
+     target_link_libraries(rtl_test m rt)
+-- 
+2.20.1
+

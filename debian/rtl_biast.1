@@ -1,14 +1,11 @@
-.TH "rtl_sdr" 1 "0.5.0" RTL-SDR "User Commands"
+.TH "rtl_biast" 1 "0.6.0" RTL-SDR "User Commands"
 .SH NAME
-rtl-sdr \- an I/Q recorder for RTL2832 based DVB-T receivers
+rtl_biast \- a tool for turning the RTL-SDR.com bias tee or any GPIO ON and OFF.
 .SH DESCRIPTION
 Uses a re-purposed DVB-T receiver as a software defined
-radio to receive signals in I/Q data form. Written for
-and incorporated in the osmocom rtl-sdr project.
-.LP
-In-Phase and Quadrature Phase data can faithfully represent
-all of the information in a band of frequencies centered
-on a carrier signal frequency.
+radio to receive and send I/Q data via TCP network to another
+demodulation, decoding or logging apllication. Written for
+and incorporated into the osmocom rtl-sdr project.
 .LP
 Much software is available for the RTL2832. Most of the user-level
 packages rely on the librtlsdr library which comes as part of the
@@ -22,31 +19,16 @@ Because most of the RTL2832 devices are connected using USB, the
 librtlsdr library depends on the libusb library to communicate with
 the device.
 .SH USAGE
-This program captures information from a band of frequencies
-and outputs the data in a form useful to other software radio
-programs.
+Run this program on a machine with an rtl-sdr supported
+device connected and it will provide I/Q data to other applications
+via TCP/IP.
 .SH SYNOPSIS
-.B  rtl_adsb [-f freq] [OPTIONS] [output file]
+.B  rtl_biast [OPTIONS]
 .SH OPTIONS
-.IP "-f frequency_to_tune_to [Hz]"
-.IP "-s samplerate (default: 2048000 Hz)"
 .IP "-d device_index (default: 0)"
-.IP "-g gain (default: 0 for auto)"
-.IP "-p ppm_error (default: 0)"
-.IP "-b output_block_size (default: 16 * 16384)"
-.IP "-n number of samples to read (default: 0, infinite)"
-.IP "-S force sync output (default: async)"
-.IP tfilename
- (a '-' dumps samples to stdout)
-.SH EXAMPLES
-.IP "Example: To tune to 392.0 MHz, and set the sample-rate to 1.8 MS/s, use:"
- ./rtl_sdr /tmp/capture.bin -s 1.8e6 -f 392e6
+.IP "-b bias_on (default: 0)"
+.IP "-g GPIO select (default: 0)"
 .LP
-to record samples to a file or to forward the data to a fifo.
-.LP
-If the device can't be opened, make sure you have the appropriate
-rights to access the device (install udev-rules from the repository,
-or run it as root).
 .SH SEE ALSO
 gnuradio(1)
 .LP
@@ -55,12 +37,12 @@ RTL-SDR wiki documentation:
 .LP
 Other rtl-sdr programs:
 .sp
-rtl_adsb(1), rtl_eeprom(1), rtl_fm(1), rtl_power(1), rtl_tcp(1), rtl_test(1), rtl_biast(1)
+rtl_adsb(1), rtl_eeprom(1), rtl_fm(1), rtl_sdr(1), rtl_test(1)
 .SH AUTHOR
 This manual page was written by Maitland Bottoms
 for the Debian project (but may be used by others).
 .SH COPYRIGHT
-Copyright (c) 2013 A. Maitland Bottoms <bottoms@debian.org>
+Copyright (c) 2020 A. Maitland Bottoms <bottoms@debian.org>
 .LP
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

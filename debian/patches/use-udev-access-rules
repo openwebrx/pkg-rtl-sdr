@@ -1,3 +1,14 @@
+From 720efab90d7e851361db0a6fb35ea8f2517fd356 Mon Sep 17 00:00:00 2001
+From: "A. Maitland Bottoms" <bottoms@debian.org>
+Date: Sun, 5 Jan 2020 18:37:47 -0500
+Subject: [PATCH 2/5] use udev access rules
+
+---
+ rtl-sdr.rules | 84 +++++++++++++++++++++++++--------------------------
+ 1 file changed, 42 insertions(+), 42 deletions(-)
+
+diff --git a/rtl-sdr.rules b/rtl-sdr.rules
+index b2f4054..83fca70 100644
 --- a/rtl-sdr.rules
 +++ b/rtl-sdr.rules
 @@ -16,127 +16,127 @@
@@ -170,3 +181,6 @@
  # PROlectrix DV107669 (FC0012)
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="1f4d", ATTRS{idProduct}=="d803", MODE:="0666"
 +SUBSYSTEMS=="usb", ATTRS{idVendor}=="1f4d", ATTRS{idProduct}=="d803", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
+-- 
+2.20.1
+

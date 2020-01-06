@@ -1,9 +1,18 @@
-Description: better user input handling
-Author: A. Maitland Bottoms <bottoms@debian.org>
+From 5482d031d46e0c4550c4d3cacd465f4c2e54fd85 Mon Sep 17 00:00:00 2001
+From: "A. Maitland Bottoms" <bottoms@debian.org>
+Date: Sun, 5 Jan 2020 18:36:33 -0500
+Subject: [PATCH 1/5] better user input handling
 
+---
+ src/rtl_fm.c    | 13 +++++++++++++
+ src/rtl_power.c |  8 ++++++++
+ 2 files changed, 21 insertions(+)
+
+diff --git a/src/rtl_fm.c b/src/rtl_fm.c
+index b163979..7ddeeeb 100644
 --- a/src/rtl_fm.c
 +++ b/src/rtl_fm.c
-@@ -926,8 +926,21 @@
+@@ -926,8 +926,21 @@ void frequency_range(struct controller_state *s, char *arg)
  	int i;
  	start = arg;
  	stop = strchr(start, ':') + 1;
@@ -25,9 +34,11 @@ Author: A. Maitland Bottoms <bottoms@debian.org>
  	step[-1] = '\0';
  	for(i=(int)atofs(start); i<=(int)atofs(stop); i+=(int)atofs(step))
  	{
+diff --git a/src/rtl_power.c b/src/rtl_power.c
+index 625d818..c277580 100644
 --- a/src/rtl_power.c
 +++ b/src/rtl_power.c
-@@ -437,8 +437,16 @@
+@@ -437,8 +437,16 @@ void frequency_range(char *arg, double crop)
  	/* hacky string parsing */
  	start = arg;
  	stop = strchr(start, ':') + 1;
@@ -44,3 +55,6 @@ Author: A. Maitland Bottoms <bottoms@debian.org>
  	step[-1] = '\0';
  	lower = (int)atofs(start);
  	upper = (int)atofs(stop);
+-- 
+2.20.1
+

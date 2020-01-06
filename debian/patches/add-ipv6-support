@@ -1,10 +1,10 @@
-From 224f789ec669bb57f434fd6f5160d5d2d973f57a Mon Sep 17 00:00:00 2001
+From c4378fa09fc7bf024874d90ff41cc091ae034660 Mon Sep 17 00:00:00 2001
 From: "A. Maitland Bottoms" <bottoms@debian.org>
 Date: Sun, 3 Sep 2017 16:22:55 -0400
-Subject: [PATCH] add ipv6 support
+Subject: [PATCH 3/5] add ipv6 support
 
 ---
- src/rtl_tcp.c | 76 +++++++++++++++++++++++++++++++++++++++++++++--------------
+ src/rtl_tcp.c | 76 +++++++++++++++++++++++++++++++++++++++------------
  1 file changed, 58 insertions(+), 18 deletions(-)
 
 diff --git a/src/rtl_tcp.c b/src/rtl_tcp.c
@@ -136,5 +136,5 @@ index da6057b..8a45264 100644
  		memset(&dongle_info, 0, sizeof(dongle_info));
  		memcpy(&dongle_info.magic, "RTL0", 4);
 -- 
-2.11.0
+2.20.1
 

@@ -1,0 +1,63 @@
+From 5d0735f5dfe276203261b8bcd3817341d4630ab2 Mon Sep 17 00:00:00 2001
+From: Adrian Chadd <adrian@freebsd.org>
+Date: Sat, 31 Aug 2019 21:37:36 -0700
+Subject: [PATCH 08/11] lib: Add GPIO version of the bias tee configuration API
+
+rtl_biast allows for non-default GPIO pins to be used.
+Add an API call which allows for that.
+---
+ include/rtl-sdr.h | 11 +++++++++++
+ src/librtlsdr.c   | 11 ++++++++---
+ 2 files changed, 19 insertions(+), 3 deletions(-)
+
+diff --git a/include/rtl-sdr.h b/include/rtl-sdr.h
+index 3ed13ae..d64701e 100644
+--- a/include/rtl-sdr.h
++++ b/include/rtl-sdr.h
+@@ -389,6 +389,17 @@ RTLSDR_API int rtlsdr_cancel_async(rtlsdr_dev_t *dev);
+  */
+ RTLSDR_API int rtlsdr_set_bias_tee(rtlsdr_dev_t *dev, int on);
+ 
++/*!
++ * Enable or disable the bias tee on the given GPIO pin.
++ *
++ * \param dev the device handle given by rtlsdr_open()
++ * \param gpio the gpio pin to configure as a Bias T control.
++ * \param on  1 for Bias T on. 0 for Bias T off.
++ * \return -1 if device is not initialized. 0 otherwise.
++ */
++RTLSDR_API int rtlsdr_set_bias_tee_gpio(rtlsdr_dev_t *dev, int gpio, int on);
++
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/src/librtlsdr.c b/src/librtlsdr.c
+index 213e96c..0146298 100644
+--- a/src/librtlsdr.c
++++ b/src/librtlsdr.c
+@@ -2009,13 +2009,18 @@ int rtlsdr_i2c_read_fn(void *dev, uint8_t addr, uint8_t *buf, int len)
+ 	return -1;
+ }
+ 
+-int rtlsdr_set_bias_tee(rtlsdr_dev_t *dev, int on)
++int rtlsdr_set_bias_tee_gpio(rtlsdr_dev_t *dev, int gpio, int on)
+ {
+ 	if (!dev)
+ 		return -1;
+ 
+-	rtlsdr_set_gpio_output(dev, 0);
+-	rtlsdr_set_gpio_bit(dev, 0, on);
++	rtlsdr_set_gpio_output(dev, gpio);
++	rtlsdr_set_gpio_bit(dev, gpio, on);
+ 
+ 	return 0;
+ }
++
++int rtlsdr_set_bias_tee(rtlsdr_dev_t *dev, int on)
++{
++	return rtlsdr_set_bias_tee_gpio(dev, 0, on);
++}
+-- 
+2.20.1
+

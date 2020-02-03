@@ -1,3 +1,10 @@
+rtl-sdr (0.6.0-2) unstable; urgency=medium
+
+  * update to 0.6.0-12-gbe2e4f8
+  * Enable usbfs zero-copy support
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 02 Feb 2020 17:23:36 -0500
+
 rtl-sdr (0.6.0-1) unstable; urgency=medium
 
   * update to 0.6.0-11-gb5af355

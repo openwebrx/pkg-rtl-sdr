@@ -9,6 +9,7 @@
 0009-rtl_biast-Add-rtl_biast.patch
 0010-allow-building-librtlsdr-as-CMake-subproject.patch
 0011-Fixed-issues-compiling-on-Windows-with-MSVC-CMake-an.patch
+0012-set-CMake-policy-CMP0075-if-it-exists.patch
 better-user-input-handling
 use-udev-access-rules
 add-ipv6-support

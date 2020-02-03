@@ -16,17 +16,9 @@ Subject: [PATCH 5/5] modernize cmake
  create mode 100644 cmake/rtlsdrConfig.cmake
  delete mode 100644 include/CMakeLists.txt
 
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 8b175e5..329d668 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -1,4 +1,4 @@
--# Copyright 2012 OSMOCOM Project
-+# Copyright 2012,2019 OSMOCOM Project
- #
- # This file is part of rtl-sdr
- #
-@@ -21,7 +21,7 @@
+@@ -19,7 +19,7 @@
  ########################################################################
  # Project setup
  ########################################################################
@@ -34,8 +26,8 @@ index 8b175e5..329d668 100644
 +cmake_minimum_required(VERSION 3.7.2)
  project(rtlsdr C)
  
- #select the release build type by default to get optimization flags
-@@ -29,13 +29,12 @@ if(NOT CMAKE_BUILD_TYPE)
+ # CMP0075 Include file check macros honor CMAKE_REQUIRED_LIBRARIES
+@@ -32,13 +32,12 @@
     set(CMAKE_BUILD_TYPE "Release")
     message(STATUS "Build type not specified: defaulting to release.")
  endif(NOT CMAKE_BUILD_TYPE)
@@ -52,7 +44,7 @@ index 8b175e5..329d668 100644
  
  # Set the version information here
  set(VERSION_INFO_MAJOR_VERSION 0) # increment major on api compatibility changes
-@@ -63,12 +62,12 @@ endif()
+@@ -66,12 +65,12 @@
  ########################################################################
  # Find build dependencies
  ########################################################################
@@ -67,7 +59,7 @@ index 8b175e5..329d668 100644
  
  if(NOT LIBUSB_FOUND)
      message(FATAL_ERROR "LibUSB 1.0 required to compile rtl-sdr")
-@@ -76,21 +75,6 @@ endif()
+@@ -79,21 +78,6 @@
  if(NOT THREADS_FOUND)
      message(FATAL_ERROR "pthreads(-win32) required to compile rtl-sdr")
  endif()
@@ -89,11 +81,10 @@ index 8b175e5..329d668 100644
  
  ########################################################################
  # Create uninstall target
-@@ -134,10 +118,18 @@ else (ENABLE_ZEROCOPY)
-     message (STATUS "Building with usbfs zero-copy support disabled, use -DENABLE_ZEROCOPY=ON to enable")
+@@ -138,9 +122,17 @@
  endif (ENABLE_ZEROCOPY)
  
-+########################################################################
+ ########################################################################
 +# Install public header files
 +########################################################################
 +install(FILES
@@ -102,14 +93,14 @@ index 8b175e5..329d668 100644
 +    DESTINATION include
 +)
 +
- ########################################################################
++########################################################################
  # Add subdirectories
  ########################################################################
 -add_subdirectory(include)
  add_subdirectory(src)
  
  ########################################################################
-@@ -162,10 +154,10 @@ IF(CMAKE_CROSSCOMPILING)
+@@ -165,10 +157,10 @@
  ENDIF(CMAKE_CROSSCOMPILING)
  
  set(prefix ${CMAKE_INSTALL_PREFIX})
@@ -124,7 +115,7 @@ index 8b175e5..329d668 100644
  CONFIGURE_FILE(
      ${CMAKE_CURRENT_SOURCE_DIR}/librtlsdr.pc.in
      ${CMAKE_CURRENT_BINARY_DIR}/librtlsdr.pc
-@@ -173,9 +165,37 @@ CONFIGURE_FILE(
+@@ -176,10 +168,38 @@
  
  INSTALL(
      FILES ${CMAKE_CURRENT_BINARY_DIR}/librtlsdr.pc
@@ -132,7 +123,7 @@ index 8b175e5..329d668 100644
 +    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
  )
  
-+########################################################################
+ ########################################################################
 +# Create CMake Config File
 +########################################################################
 +write_basic_package_version_file(
@@ -160,12 +151,10 @@ index 8b175e5..329d668 100644
 +  COMPONENT Devel
 +  )
 +
- ########################################################################
++########################################################################
  # Print Summary
  ########################################################################
-diff --git a/cmake/Modules/FindLibUSB.cmake b/cmake/Modules/FindLibUSB.cmake
-deleted file mode 100644
-index bbf5593..0000000
+ MESSAGE(STATUS "Building for version: ${VERSION} / ${LIBVER}")
 --- a/cmake/Modules/FindLibUSB.cmake
 +++ /dev/null
 @@ -1,55 +0,0 @@
@@ -224,9 +213,6 @@ index bbf5593..0000000
 -mark_as_advanced(LIBUSB_INCLUDE_DIR LIBUSB_LIBRARIES)
 -
 -endif(NOT LIBUSB_FOUND)
-diff --git a/cmake/Modules/FindThreads.cmake b/cmake/Modules/FindThreads.cmake
-deleted file mode 100644
-index 8028b15..0000000
 --- a/cmake/Modules/FindThreads.cmake
 +++ /dev/null
 @@ -1,246 +0,0 @@
@@ -476,9 +462,6 @@ index 8028b15..0000000
 -ELSE()
 -  FIND_PACKAGE_HANDLE_STANDARD_ARGS(Threads DEFAULT_MSG Threads_FOUND)
 -ENDIF()
-diff --git a/cmake/rtlsdrConfig.cmake b/cmake/rtlsdrConfig.cmake
-new file mode 100644
-index 0000000..eeff2f3
 --- /dev/null
 +++ b/cmake/rtlsdrConfig.cmake
 @@ -0,0 +1,8 @@
@@ -490,9 +473,6 @@ index 0000000..eeff2f3
 +if(NOT TARGET rtlsdr::rtlsdr)
 +  include("${RTLSDR_CMAKE_DIR}/rtlsdrTargets.cmake")
 +endif()
-diff --git a/include/CMakeLists.txt b/include/CMakeLists.txt
-deleted file mode 100644
-index 507c0c7..0000000
 --- a/include/CMakeLists.txt
 +++ /dev/null
 @@ -1,27 +0,0 @@
@@ -523,8 +503,6 @@ index 507c0c7..0000000
 -    rtl-sdr_export.h
 -    DESTINATION include
 -)
-diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 5d6aff0..959a9d9 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
 @@ -17,53 +17,52 @@
@@ -616,7 +594,7 @@ index 5d6aff0..959a9d9 100644
  
  ########################################################################
  # Setup libraries used in executables
-@@ -72,13 +71,13 @@ add_library(convenience_static STATIC
+@@ -72,13 +71,13 @@
      convenience/convenience.c
  )
  
@@ -633,7 +611,7 @@ index 5d6aff0..959a9d9 100644
  endif()
  
  ########################################################################
-@@ -92,37 +91,37 @@ add_executable(rtl_eeprom rtl_eeprom.c)
+@@ -92,37 +91,37 @@
  add_executable(rtl_adsb rtl_adsb.c)
  add_executable(rtl_power rtl_power.c)
  add_executable(rtl_biast rtl_biast.c)
@@ -680,7 +658,7 @@ index 5d6aff0..959a9d9 100644
      ${LIBUSB_LIBRARIES}
      ${CMAKE_THREAD_LIBS_INIT}
  )
-@@ -159,8 +158,12 @@ endif()
+@@ -159,8 +158,12 @@
  ########################################################################
  # Install built library files & utilities
  ########################################################################
@@ -698,6 +676,3 @@ index 5d6aff0..959a9d9 100644
 +install(TARGETS rtl_sdr rtl_tcp rtl_test rtl_fm rtl_eeprom rtl_adsb rtl_power rtl_biast
 +  DESTINATION ${CMAKE_INSTALL_BINDIR}
 +  )
--- 
-2.20.1
-

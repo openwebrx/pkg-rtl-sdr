@@ -1,18 +1,114 @@
-From 720efab90d7e851361db0a6fb35ea8f2517fd356 Mon Sep 17 00:00:00 2001
-From: "A. Maitland Bottoms" <bottoms@debian.org>
-Date: Sun, 5 Jan 2020 18:37:47 -0500
-Subject: [PATCH 2/5] use udev access rules
+From f016af882f2814fe43f183f2971892497d3ba5b4 Mon Sep 17 00:00:00 2001
+From: Steve Markgraf <steve@steve-m.de>
+Date: Thu, 27 Feb 2020 00:07:47 +0100
+Subject: [PATCH 21/33] Update Debian packaging information
 
 ---
- rtl-sdr.rules | 84 +++++++++++++++++++++++++--------------------------
- 1 file changed, 42 insertions(+), 42 deletions(-)
+ debian/changelog             |  9 +++-
+ debian/compat                |  2 +-
+ debian/control               |  5 ++-
+ debian/librtlsdr-dev.acc     | 27 +++++++++++
+ debian/librtlsdr-dev.install |  1 +
+ debian/librtlsdr0.udev       | 87 +++++++++++++++++-------------------
+ debian/rules                 | 10 ++++-
+ debian/source/format         |  2 +-
+ 8 files changed, 91 insertions(+), 52 deletions(-)
+ create mode 100644 debian/librtlsdr-dev.acc
 
-diff --git a/rtl-sdr.rules b/rtl-sdr.rules
-index b2f4054..83fca70 100644
---- a/rtl-sdr.rules
-+++ b/rtl-sdr.rules
-@@ -16,127 +16,127 @@
+diff --git a/debian/changelog b/debian/changelog
+index 24d97e2..15aadeb 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,4 +1,11 @@
+-rtl-sdr (0.6git) unstable; urgency=medium
++rtl-sdr (0.6-1) unstable; urgency=medium
++
++  * New upstream release
++  * with modernize-cmake patch
++
++ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 06 Oct 2018 20:28:26 -0400
++
++rtl-sdr (0.6~git) unstable; urgency=medium
+ 
+   * New upstream release
+ 
+diff --git a/debian/compat b/debian/compat
+index ec63514..f599e28 100644
+--- a/debian/compat
++++ b/debian/compat
+@@ -1 +1 @@
+-9
++10
+diff --git a/debian/control b/debian/control
+index c77877d..50eb1fb 100644
+--- a/debian/control
++++ b/debian/control
+@@ -3,10 +3,11 @@ Section: comm
+ Priority: optional
+ Maintainer: A. Maitland Bottoms <bottoms@debian.org>
+ Build-Depends: cmake,
+-               debhelper (>= 9.0.0~),
++               debhelper (>= 10~),
+                libusb-1.0-0-dev [linux-any],
+                libusb-dev [hurd-i386],
+-               libusb2-dev [kfreebsd-any]
++               libusb2-dev [kfreebsd-any],
++	       pkg-config
+ Standards-Version: 4.1.4
+ Homepage: http://sdr.osmocom.org/trac/wiki/rtl-sdr
+ Vcs-Browser: https://salsa.debian.org/bottoms/pkg-rtl-sdr
+diff --git a/debian/librtlsdr-dev.acc b/debian/librtlsdr-dev.acc
+new file mode 100644
+index 0000000..282f2cd
+--- /dev/null
++++ b/debian/librtlsdr-dev.acc
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="utf-8"?>
++<descriptor>
++
++<gcc_options>
++  -fPIC
++  -g
++  -O2
++  -fstack-protector-strong
++  -Wformat
++  -Werror=format-security
++  -Wdate-time
++  -D_FORTIFY_SOURCE=2
++  -fvisibility=hidden
++  -Wsign-compare
++  -Wall
++  -Wno-uninitialized
++</gcc_options>
++
++<headers>
++debian/librtlsdr-dev/usr/include/
++</headers>
++
++<libs>
++debian/librtlsdr0/usr/lib/
++</libs>
++
++</descriptor>
+diff --git a/debian/librtlsdr-dev.install b/debian/librtlsdr-dev.install
+index 76f28fa..c5f0576 100644
+--- a/debian/librtlsdr-dev.install
++++ b/debian/librtlsdr-dev.install
+@@ -2,3 +2,4 @@ usr/include/*
+ usr/lib/*/lib*.a
+ usr/lib/*/lib*.so
+ usr/lib/*/pkgconfig/*
++usr/lib/*/cmake/*
+diff --git a/debian/librtlsdr0.udev b/debian/librtlsdr0.udev
+index b2f4054..5709870 100644
+--- a/debian/librtlsdr0.udev
++++ b/debian/librtlsdr0.udev
+@@ -13,130 +13,127 @@
  #
+ # You should have received a copy of the GNU General Public License
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-#
++# MODE="0664", GROUP="plugdev"
  
  # original RTL2832U vid/pid (hama nano, for example)
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", MODE:="0666"
@@ -88,11 +184,10 @@ index b2f4054..83fca70 100644
  
  # Astrometa DVB-T/DVB-T2 (R828D)
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0131", MODE:="0666"
-+SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0131", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
- 
- # HanfTek DAB+FM+DVB-T
+-
+-# HanfTek DAB+FM+DVB-T
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0133", MODE:="0666"
-+SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0133", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
++SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0131", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
  
  # Compro Videomate U620F (E4000)
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="185b", ATTRS{idProduct}=="0620", MODE:="0666"
@@ -181,6 +276,36 @@ index b2f4054..83fca70 100644
  # PROlectrix DV107669 (FC0012)
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="1f4d", ATTRS{idProduct}=="d803", MODE:="0666"
 +SUBSYSTEMS=="usb", ATTRS{idVendor}=="1f4d", ATTRS{idProduct}=="d803", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
+diff --git a/debian/rules b/debian/rules
+index 901ea73..087f0dc 100755
+--- a/debian/rules
++++ b/debian/rules
+@@ -3,10 +3,16 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+ export DEB_HOST_MULTIARCH
+ 
+ %:
+-	dh $@
++	dh $@ --buildsystem=cmake
+ 
+ override_dh_auto_configure: debian/librtlsdr0.udev
+-	dh_auto_configure -- -DLIB_INSTALL_DIR=lib/$(DEB_HOST_MULTIARCH) -DDETACH_KERNEL_DRIVER=ON
++	dh_auto_configure --buildsystem=cmake -- -DDETACH_KERNEL_DRIVER=ON \
++						 -DINSTALL_UDEV_RULES=ON \
++						 -DCMAKE_BUILD_TYPE=RelWithDebInfo
+ 
+ debian/librtlsdr0.udev: rtl-sdr.rules
+ 	cp -p rtl-sdr.rules debian/librtlsdr0.udev
++
++override_dh_acc:
++	- dh_acc
++	- cat debian/librtlsdr-dev/usr/lib/x86_64-linux-gnu/dh-acc/librtlsdr-dev_*_report.html
+diff --git a/debian/source/format b/debian/source/format
+index 89ae9db..163aaf8 100644
+--- a/debian/source/format
++++ b/debian/source/format
+@@ -1 +1 @@
+-3.0 (native)
++3.0 (quilt)
 -- 
-2.20.1
+2.30.2
 

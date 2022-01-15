@@ -1,7 +1,7 @@
 From 1dff8e0b4c5681cf2cbc6d4ab0aa0bee30c5ed09 Mon Sep 17 00:00:00 2001
 From: Benjamin Larsson <banan@ludd.ltu.se>
 Date: Mon, 17 Feb 2020 01:20:24 +0100
-Subject: [PATCH 13/13] lib: enable better UHF reception (>862MHz) for FC0013
+Subject: [PATCH 13/33] lib: enable better UHF reception (>862MHz) for FC0013
 
 ---
  src/tuner_fc0013.c | 4 ++--
@@ -26,5 +26,5 @@ index 78b696e..5984dfb 100644
  			goto exit;
  	}
 -- 
-2.20.1
+2.30.2
 

@@ -1,0 +1,30 @@
+From 2659e2df31e592d74d6dd264a4f5ce242c6369c8 Mon Sep 17 00:00:00 2001
+From: "jvde.github" <jvde.github@gmail.com>
+Date: Sat, 8 Jan 2022 13:30:34 +0100
+Subject: [PATCH 33/33] lib: force wait state after cancel of usb transfer
+
+..and before handling usb events
+
+This avoids an occasional crash when closing the device on Windows.
+Also see https://github.com/libusb/libusb/issues/1043.
+---
+ src/librtlsdr.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/librtlsdr.c b/src/librtlsdr.c
+index 0146298..2682d77 100644
+--- a/src/librtlsdr.c
++++ b/src/librtlsdr.c
+@@ -1930,6 +1930,9 @@ int rtlsdr_read_async(rtlsdr_dev_t *dev, rtlsdr_read_async_cb_t cb, void *ctx,
+ 					/* handle events after canceling
+ 					 * to allow transfer status to
+ 					 * propagate */
++#ifdef _WIN32
++					Sleep(1);
++#endif
+ 					libusb_handle_events_timeout_completed(dev->ctx,
+ 									       &zerotv, NULL);
+ 					if (r < 0)
+-- 
+2.30.2
+

@@ -1,0 +1,27 @@
+From d770add42e87a40e59a0185521373f516778384b Mon Sep 17 00:00:00 2001
+From: Martin Hauke <mardnh@gmx.de>
+Date: Sat, 11 Sep 2021 16:31:36 +0200
+Subject: [PATCH 32/33] Fix minGW build
+
+MinGW-w64 ships all Windows SDK headers as lowercase, which prevents
+cross-compiling this code from Linux.
+---
+ src/rtl_tcp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/rtl_tcp.c b/src/rtl_tcp.c
+index 89b1fb9..84f5591 100644
+--- a/src/rtl_tcp.c
++++ b/src/rtl_tcp.c
+@@ -35,7 +35,7 @@
+ #include <fcntl.h>
+ #else
+ #include <winsock2.h>
+-#include <WS2tcpip.h>
++#include <ws2tcpip.h>
+ #include "getopt/getopt.h"
+ #endif
+ 
+-- 
+2.30.2
+

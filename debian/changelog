@@ -1,3 +1,10 @@
+rtl-sdr (0.6.0-4) unstable; urgency=medium
+
+  * update to v0.6.0-33-g2659e2d (Debian patches in upstream)
+  * remove old libusb workaround
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 15 Jan 2022 14:44:57 -0500
+
 rtl-sdr (0.6.0-3) unstable; urgency=medium
 
   * update to 0.6.0-13-g1dff8e0

@@ -1,0 +1,35 @@
+From 3163b8817fec288e3aafae2a81d10ad01eed2852 Mon Sep 17 00:00:00 2001
+From: Oliver Smith <osmith@sysmocom.de>
+Date: Wed, 18 Aug 2021 09:09:25 +0200
+Subject: [PATCH 30/33] rtl_tcp: put new DEFAULT_* constants in defines
+
+Fix failures with some GCC versions:
+  /usr/src/packages/BUILD/src/rtl_tcp.c:90:24: error: initializer element is not constant
+   static int llbuf_num = DEFAULT_MAX_NUM_BUFFERS;
+
+Fixes: 641c22 ("rtl_tcp: Extracted some constants out of printf strings")
+Change-Id: Ia9e18d4c22d957f561dcdaf2657bb6d201374375
+---
+ src/rtl_tcp.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/rtl_tcp.c b/src/rtl_tcp.c
+index ad930c8..89b1fb9 100644
+--- a/src/rtl_tcp.c
++++ b/src/rtl_tcp.c
+@@ -56,9 +56,9 @@ typedef int socklen_t;
+ #define SOCKET_ERROR -1
+ #endif
+ 
+-static const char*    DEFAULT_PORT_STR = "1234";
+-static const uint32_t DEFAULT_SAMPLE_RATE_HZ = 2048000;
+-static const int      DEFAULT_MAX_NUM_BUFFERS = 500;
++#define DEFAULT_PORT_STR "1234"
++#define DEFAULT_SAMPLE_RATE_HZ 2048000
++#define DEFAULT_MAX_NUM_BUFFERS 500
+ 
+ static SOCKET s;
+ 
+-- 
+2.30.2
+

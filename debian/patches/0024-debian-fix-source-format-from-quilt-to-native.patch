@@ -1,0 +1,39 @@
+From dc92af01bf82b5185986190e3cde3762565d2194 Mon Sep 17 00:00:00 2001
+From: Harald Welte <laforge@osmocom.org>
+Date: Mon, 2 Mar 2020 23:17:51 +0100
+Subject: [PATCH 24/33] debian: fix source/format from quilt to native
+
+We certainly don't use quilt, as we build packages using
+git-buildpackage.
+
+This is what likely causes build failures on our osmocom nightly
+builds stating
+
+gbp:error: Non-native package 'rtl-sdr' has invalid version '0.5.4.32.3d7c'
+
+If the package now is 'native', the errors should be gone.
+---
+ debian/changelog     | 2 +-
+ debian/source/format | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/debian/changelog b/debian/changelog
+index 15aadeb..c218709 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,4 +1,4 @@
+-rtl-sdr (0.6-1) unstable; urgency=medium
++rtl-sdr (0.6) unstable; urgency=medium
+ 
+   * New upstream release
+   * with modernize-cmake patch
+diff --git a/debian/source/format b/debian/source/format
+index 163aaf8..89ae9db 100644
+--- a/debian/source/format
++++ b/debian/source/format
+@@ -1 +1 @@
+-3.0 (quilt)
++3.0 (native)
+-- 
+2.30.2
+

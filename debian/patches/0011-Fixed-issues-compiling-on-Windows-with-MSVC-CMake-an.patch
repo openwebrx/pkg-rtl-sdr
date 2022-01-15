@@ -1,7 +1,7 @@
 From b5af355b1d833b3c898a61cf1e072b59b0ea3440 Mon Sep 17 00:00:00 2001
 From: leonsal <leonsal@users.noreply.github.com>
 Date: Tue, 3 Dec 2019 16:47:17 -0300
-Subject: [PATCH 11/11] Fixed issues compiling on Windows with MSVC, CMake and
+Subject: [PATCH 11/33] Fixed issues compiling on Windows with MSVC, CMake and
  NMake (#61)
 
 When trying to build a simple program which uses librtlsdr
@@ -71,5 +71,5 @@ index bf603c3..0861ecb 100644
  VS_VERSION_INFO VERSIONINFO
    FILEVERSION 0,0,0,0
 -- 
-2.20.1
+2.30.2
 

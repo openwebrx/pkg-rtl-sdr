@@ -1,0 +1,33 @@
+From b2ee24eff514ae6af14d707b2e0b3f30884a7361 Mon Sep 17 00:00:00 2001
+From: "A. Maitland Bottoms" <bottoms@debian.org>
+Date: Sun, 10 Jul 2016 06:03:34 -0400
+Subject: [PATCH 15/33] CMake: support for libusb on GNU/Hurd
+
+Debian builds on hurd-i386 with a variant of libusb.
+---
+ cmake/Modules/FindLibUSB.cmake | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cmake/Modules/FindLibUSB.cmake b/cmake/Modules/FindLibUSB.cmake
+index bbf5593..abe6ee4 100644
+--- a/cmake/Modules/FindLibUSB.cmake
++++ b/cmake/Modules/FindLibUSB.cmake
+@@ -1,5 +1,5 @@
+ if(NOT LIBUSB_FOUND)
+-  pkg_check_modules (LIBUSB_PKG libusb-1.0)
++  pkg_check_modules (LIBUSB_PKG libusb-1.0 libusb)
+   find_path(LIBUSB_INCLUDE_DIR NAMES libusb.h
+     PATHS
+     ${LIBUSB_PKG_INCLUDE_DIRS}
+@@ -12,7 +12,7 @@ if(NOT LIBUSB_FOUND)
+ set(libusb1_library_names usb-1.0 libusb-1.0)
+ 
+ #libusb-1.0 compatible library on freebsd
+-if((CMAKE_SYSTEM_NAME STREQUAL "FreeBSD") OR (CMAKE_SYSTEM_NAME STREQUAL "kFreeBSD"))
++if((CMAKE_SYSTEM_NAME STREQUAL "FreeBSD") OR (CMAKE_SYSTEM_NAME STREQUAL "kFreeBSD") OR (CMAKE_SYSTEM_NAME STREQUAL "GNU"))
+     list(APPEND libusb1_library_names usb)
+ endif()
+ 
+-- 
+2.30.2
+

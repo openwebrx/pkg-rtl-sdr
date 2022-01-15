@@ -11,8 +11,24 @@
 0011-Fixed-issues-compiling-on-Windows-with-MSVC-CMake-an.patch
 0012-set-CMake-policy-CMP0075-if-it-exists.patch
 0013-lib-enable-better-UHF-reception-862MHz-for-FC0013.patch
-better-user-input-handling
-use-udev-access-rules
-add-ipv6-support
-improve-librtlsdr-pc-file
-modernize-cmake
+0014-Improve-librtlsdr.pc-file.patch
+0015-CMake-support-for-libusb-on-GNU-Hurd.patch
+0016-rtl_fm-rtl_power-Improve-scanning-range-parsing.patch
+0017-Use-udev-uaccess-rules.patch
+0018-rtl_tcp-Add-IPv6-support.patch
+0019-rtl_tcp-Initialize-listensocket.patch
+0020-Modernize-CMake.patch
+# 0021-Update-Debian-packaging-information.patch
+0022-Add-missing-rtlsdrConfig.cmake.patch
+0023-Fix-for-CMake-3.12.0.patch
+# 0024-debian-fix-source-format-from-quilt-to-native.patch
+0025-tuner_r82xx-fix-short-write-in-r82xx_read.patch
+0026-Add-rtl_biast-as-install-target.patch
+0027-cmake-populate-pkgconfig-file-with-prefix.patch
+0028-fix-windows-build.patch
+0029-rtl_tcp-Extracted-some-constants-out-of-printf-strin.patch
+0030-rtl_tcp-put-new-DEFAULT_-constants-in-defines.patch
+0031-rtl_fm-add-a-new-option-to-select-2nd-direct-samplin.patch
+0032-Fix-minGW-build.patch
+0033-lib-force-wait-state-after-cancel-of-usb-transfer.patch
+remove-old-libusb-workaround

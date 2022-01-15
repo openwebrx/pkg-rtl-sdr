@@ -1,7 +1,7 @@
 From 43b257854c2c4f6d30649e34d1d1473e72630c5a Mon Sep 17 00:00:00 2001
 From: Adrian Chadd <adrian.chadd@oculus.com>
 Date: Sat, 31 Aug 2019 21:26:27 -0700
-Subject: [PATCH 09/11] rtl_biast: Add rtl_biast
+Subject: [PATCH 09/33] rtl_biast: Add rtl_biast
 
 This is an import of the rtl_biast command line tool from the
 rtlsdrblog github repository.  It's easier to include it here than
@@ -147,5 +147,5 @@ index 0000000..185e838
 +	return r >= 0 ? r : -r;
 +}
 -- 
-2.20.1
+2.30.2
 

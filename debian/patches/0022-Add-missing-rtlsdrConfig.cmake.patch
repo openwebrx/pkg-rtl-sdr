@@ -1,0 +1,29 @@
+From 3d7cdc5221d5c43794e6ca21a36df2c7003133ef Mon Sep 17 00:00:00 2001
+From: Steve Markgraf <steve@steve-m.de>
+Date: Thu, 27 Feb 2020 00:18:26 +0100
+Subject: [PATCH 22/33] Add missing rtlsdrConfig.cmake
+
+This file was missing in commit
+849f8efca42b659bf7e8fe17156ee0aa67b47233.
+---
+ cmake/rtlsdrConfig.cmake | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 cmake/rtlsdrConfig.cmake
+
+diff --git a/cmake/rtlsdrConfig.cmake b/cmake/rtlsdrConfig.cmake
+new file mode 100644
+index 0000000..eeff2f3
+--- /dev/null
++++ b/cmake/rtlsdrConfig.cmake
+@@ -0,0 +1,8 @@
++include(FindPkgConfig)
++pkg_check_modules(LIBUSB libusb-1.0 IMPORTED_TARGET)
++
++get_filename_component(RTLSDR_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
++
++if(NOT TARGET rtlsdr::rtlsdr)
++  include("${RTLSDR_CMAKE_DIR}/rtlsdrTargets.cmake")
++endif()
+-- 
+2.30.2
+

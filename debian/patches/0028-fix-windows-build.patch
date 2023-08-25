@@ -1,7 +1,7 @@
 From 0847e93e0869feab50fd27c7afeb85d78ca04631 Mon Sep 17 00:00:00 2001
 From: Eric Wild <ewild@sysmocom.de>
 Date: Sun, 1 Nov 2020 00:54:06 +0100
-Subject: [PATCH 28/33] fix windows build
+Subject: [PATCH 28/36] fix windows build
 
 We really should not have pkgconfig as a build requirement on windows.
 ---
@@ -110,5 +110,5 @@ index 562198f..995bc1b 100644
  #endif
  
 -- 
-2.30.2
+2.39.2
 

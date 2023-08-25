@@ -1,7 +1,7 @@
 From d794155ba65796a76cd0a436f9709f4601509320 Mon Sep 17 00:00:00 2001
 From: Derrick Pallas <derrick@pallas.us>
 Date: Wed, 18 Mar 2020 14:54:48 -0700
-Subject: [PATCH 25/33] tuner_r82xx: fix short-write in r82xx_read
+Subject: [PATCH 25/36] tuner_r82xx: fix short-write in r82xx_read
 
 In r82xx_read, there is a 1-byte I2C write followed by the I2C read.  If
 this I2C write fails, r82xx_read correctly bails out but may return 0.
@@ -39,5 +39,5 @@ index fe52bd9..997abd7 100644
  	rc = rtlsdr_i2c_read_fn(priv->rtl_dev, priv->cfg->i2c_addr, p, len);
  
 -- 
-2.30.2
+2.39.2
 

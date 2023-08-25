@@ -1,7 +1,7 @@
 From 2659e2df31e592d74d6dd264a4f5ce242c6369c8 Mon Sep 17 00:00:00 2001
 From: "jvde.github" <jvde.github@gmail.com>
 Date: Sat, 8 Jan 2022 13:30:34 +0100
-Subject: [PATCH 33/33] lib: force wait state after cancel of usb transfer
+Subject: [PATCH 33/36] lib: force wait state after cancel of usb transfer
 
 ..and before handling usb events
 
@@ -26,5 +26,5 @@ index 0146298..2682d77 100644
  									       &zerotv, NULL);
  					if (r < 0)
 -- 
-2.30.2
+2.39.2
 

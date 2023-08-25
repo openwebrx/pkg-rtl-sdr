@@ -1,7 +1,7 @@
 From bd73737c49e9a9efbd36fe4867f5843608825140 Mon Sep 17 00:00:00 2001
 From: leonsal <leonel.salvadori@gmail.com>
 Date: Tue, 12 Nov 2019 16:39:04 -0300
-Subject: [PATCH 10/33] allow building librtlsdr as CMake subproject
+Subject: [PATCH 10/36] allow building librtlsdr as CMake subproject
 
 Replace CMAKE_SOURCE_DIR by PROJECT_SOURCE_DIR in main CMakeLists.txt
 to fix CMake errors when building librtlsdr as a subproject.
@@ -41,5 +41,5 @@ index 57a1c2e..8b175e5 100644
  @ONLY)
  
 -- 
-2.30.2
+2.39.2
 

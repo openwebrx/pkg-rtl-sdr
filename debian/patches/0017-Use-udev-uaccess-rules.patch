@@ -1,7 +1,7 @@
 From b2814731563be4d5a0a68554ece6454a2c63af12 Mon Sep 17 00:00:00 2001
 From: "A. Maitland Bottoms" <bottoms@debian.org>
 Date: Thu, 24 Aug 2017 05:31:10 -0400
-Subject: [PATCH 17/33] Use udev uaccess rules
+Subject: [PATCH 17/36] Use udev uaccess rules
 
 ---
  rtl-sdr.rules | 84 +++++++++++++++++++++++++--------------------------
@@ -182,5 +182,5 @@ index b2f4054..83fca70 100644
 -SUBSYSTEMS=="usb", ATTRS{idVendor}=="1f4d", ATTRS{idProduct}=="d803", MODE:="0666"
 +SUBSYSTEMS=="usb", ATTRS{idVendor}=="1f4d", ATTRS{idProduct}=="d803", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
 -- 
-2.30.2
+2.39.2
 

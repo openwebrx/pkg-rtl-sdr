@@ -1,7 +1,7 @@
 From 5d0735f5dfe276203261b8bcd3817341d4630ab2 Mon Sep 17 00:00:00 2001
 From: Adrian Chadd <adrian@freebsd.org>
 Date: Sat, 31 Aug 2019 21:37:36 -0700
-Subject: [PATCH 08/33] lib: Add GPIO version of the bias tee configuration API
+Subject: [PATCH 08/36] lib: Add GPIO version of the bias tee configuration API
 
 rtl_biast allows for non-default GPIO pins to be used.
 Add an API call which allows for that.
@@ -59,5 +59,5 @@ index 213e96c..0146298 100644
 +	return rtlsdr_set_bias_tee_gpio(dev, 0, on);
 +}
 -- 
-2.30.2
+2.39.2
 

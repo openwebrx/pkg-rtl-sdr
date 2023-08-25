@@ -13,7 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# MODE="0664", GROUP="plugdev"
+#
 
 # original RTL2832U vid/pid (hama nano, for example)
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
@@ -71,6 +71,9 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="1554", ATTRS{idProduct}=="5020", ENV{ID_SOF
 
 # Astrometa DVB-T/DVB-T2 (R828D)
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0131", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
+
+# HanfTek DAB+FM+DVB-T
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="15f4", ATTRS{idProduct}=="0133", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"
 
 # Compro Videomate U620F (E4000)
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="185b", ATTRS{idProduct}=="0620", ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"

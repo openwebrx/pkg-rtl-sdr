@@ -1,7 +1,7 @@
 From be2e4f899a4a14a3527f2c1331d6d904047b3525 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Sun, 19 Jan 2020 16:56:51 +0100
-Subject: [PATCH 12/33] set CMake policy CMP0075 if it exists
+Subject: [PATCH 12/36] set CMake policy CMP0075 if it exists
 
 Otherwise newer versions of CMake are throwing a warning.
 ---
@@ -53,5 +53,5 @@ index 8b175e5..f34904d 100644
  if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 -- 
-2.30.2
+2.39.2
 

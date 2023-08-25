@@ -1,7 +1,7 @@
 From dc92af01bf82b5185986190e3cde3762565d2194 Mon Sep 17 00:00:00 2001
 From: Harald Welte <laforge@osmocom.org>
 Date: Mon, 2 Mar 2020 23:17:51 +0100
-Subject: [PATCH 24/33] debian: fix source/format from quilt to native
+Subject: [PATCH 24/36] debian: fix source/format from quilt to native
 
 We certainly don't use quilt, as we build packages using
 git-buildpackage.
@@ -35,5 +35,5 @@ index 163aaf8..89ae9db 100644
 -3.0 (quilt)
 +3.0 (native)
 -- 
-2.30.2
+2.39.2
 

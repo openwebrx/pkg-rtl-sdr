@@ -1,7 +1,7 @@
 From f016af882f2814fe43f183f2971892497d3ba5b4 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Thu, 27 Feb 2020 00:07:47 +0100
-Subject: [PATCH 21/33] Update Debian packaging information
+Subject: [PATCH 21/36] Update Debian packaging information
 
 ---
  debian/changelog             |  9 +++-
@@ -307,5 +307,5 @@ index 89ae9db..163aaf8 100644
 -3.0 (native)
 +3.0 (quilt)
 -- 
-2.30.2
+2.39.2
 

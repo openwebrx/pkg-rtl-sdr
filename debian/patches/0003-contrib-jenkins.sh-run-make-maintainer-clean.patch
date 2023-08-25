@@ -1,7 +1,7 @@
 From 7f2ae12548a1a2f74ae2d33e37fec0d141ed5b8f Mon Sep 17 00:00:00 2001
 From: Oliver Smith <osmith@sysmocom.de>
 Date: Thu, 11 Jul 2019 11:00:06 +0200
-Subject: [PATCH 03/33] contrib/jenkins.sh: run "make maintainer-clean"
+Subject: [PATCH 03/36] contrib/jenkins.sh: run "make maintainer-clean"
 
 Related: OS#3047
 Signed-off-by: Oliver Smith <osmith@sysmocom.de>
@@ -22,5 +22,5 @@ index cb566f1..0538406 100755
  
  osmo-clean-workspace.sh
 -- 
-2.30.2
+2.39.2
 

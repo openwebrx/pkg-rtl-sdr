@@ -1,0 +1,44 @@
+From 5e73f90f1d85d8db2e583f3dbf1cff052d71d59b Mon Sep 17 00:00:00 2001
+From: Clayton Smith <argilo@gmail.com>
+Date: Sat, 15 Jan 2022 16:30:39 +0000
+Subject: [PATCH 34/36] lib: Stop applying workaround for libusb < 1.0.9
+
+Librtlsdr has a workaround for libusb versions that lack
+libusb_handle_events_timeout_completed, which was added in version 1.0.9
+(released 2012-04-02). The workaround is always applied unless the
+HAVE_LIBUSB_HANDLE_EVENTS_TIMEOUT_COMPLETED macro is set, but the cmake
+code that sets this macro was removed in
+849f8efca42b659bf7e8fe17156ee0aa67b47233. As a result, the workaround is
+now always applied. This results in an extra 1-second delay whenever a
+GNU Radio flowgraph containing an RTL-SDR block is stopped, which makes
+operations like switching between demodulators in Gqrx annoyingly slow.
+
+To solve this problem, I've simply removed the workaround, as it should
+no longer be needed.
+
+I wonder if perhaps the workaround recently applied in
+2659e2df31e592d74d6dd264a4f5ce242c6369c8 might stem from the same bug.
+---
+ src/librtlsdr.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/src/librtlsdr.c b/src/librtlsdr.c
+index 2682d77..096abae 100644
+--- a/src/librtlsdr.c
++++ b/src/librtlsdr.c
+@@ -39,12 +39,6 @@
+ #define LIBUSB_CALL
+ #endif
+ 
+-/* libusb < 1.0.9 doesn't have libusb_handle_events_timeout_completed */
+-#ifndef HAVE_LIBUSB_HANDLE_EVENTS_TIMEOUT_COMPLETED
+-#define libusb_handle_events_timeout_completed(ctx, tv, c) \
+-	libusb_handle_events_timeout(ctx, tv)
+-#endif
+-
+ /* two raised to the power of n */
+ #define TWO_POW(n)		((double)(1ULL<<(n)))
+ 
+-- 
+2.39.2
+

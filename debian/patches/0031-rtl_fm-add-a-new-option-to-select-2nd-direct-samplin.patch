@@ -1,7 +1,7 @@
 From a4eab76c8cafc6f3ebed8b6757b0643df9453bec Mon Sep 17 00:00:00 2001
 From: Doug Hammond <doug@lon.dev>
 Date: Thu, 29 Jul 2021 18:27:17 +0100
-Subject: [PATCH 31/33] rtl_fm: add a new option to select 2nd direct sampling
+Subject: [PATCH 31/36] rtl_fm: add a new option to select 2nd direct sampling
  mode
 
 ---
@@ -49,5 +49,5 @@ index 283542d..7c84332 100644
  				dongle.offset_tuning = 1;}
  			break;
 -- 
-2.30.2
+2.39.2
 

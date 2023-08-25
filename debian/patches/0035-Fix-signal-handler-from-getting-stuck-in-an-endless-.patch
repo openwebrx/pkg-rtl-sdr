@@ -1,0 +1,96 @@
+From 142325a93c6ad70f851f43434acfdf75e12dfe03 Mon Sep 17 00:00:00 2001
+From: Tobias Girstmair <t-osmocom@girst.at>
+Date: Fri, 18 Nov 2022 16:20:14 +0100
+Subject: [PATCH 35/36] Fix signal handler from getting stuck in an endless
+ loop
+
+The signal handler for SIGINT/TERM/QUIT and, importantly, SIGPIPE tries
+to write an informational message to stderr. When however stderr is
+redirected to a closed pipe, this will cause (another) SIGPIPE, and in
+turn the signal handler will get called again, and again and again.
+
+Since we intend to exit rtl_fm anyways, we can just ignore this signal.
+---
+ src/rtl_adsb.c  | 1 +
+ src/rtl_fm.c    | 1 +
+ src/rtl_power.c | 1 +
+ src/rtl_sdr.c   | 1 +
+ src/rtl_tcp.c   | 1 +
+ src/rtl_test.c  | 1 +
+ 6 files changed, 6 insertions(+)
+
+diff --git a/src/rtl_adsb.c b/src/rtl_adsb.c
+index 7aea8dd..8119ac8 100644
+--- a/src/rtl_adsb.c
++++ b/src/rtl_adsb.c
+@@ -123,6 +123,7 @@ sighandler(int signum)
+ #else
+ static void sighandler(int signum)
+ {
++	signal(SIGPIPE, SIG_IGN);
+ 	fprintf(stderr, "Signal caught, exiting!\n");
+ 	do_exit = 1;
+ 	rtlsdr_cancel_async(dev);
+diff --git a/src/rtl_fm.c b/src/rtl_fm.c
+index 7c84332..037793c 100644
+--- a/src/rtl_fm.c
++++ b/src/rtl_fm.c
+@@ -246,6 +246,7 @@ sighandler(int signum)
+ #else
+ static void sighandler(int signum)
+ {
++	signal(SIGPIPE, SIG_IGN);
+ 	fprintf(stderr, "Signal caught, exiting!\n");
+ 	do_exit = 1;
+ 	rtlsdr_cancel_async(dongle.dev);
+diff --git a/src/rtl_power.c b/src/rtl_power.c
+index 6204de2..df3ceb7 100644
+--- a/src/rtl_power.c
++++ b/src/rtl_power.c
+@@ -195,6 +195,7 @@ sighandler(int signum)
+ #else
+ static void sighandler(int signum)
+ {
++	signal(SIGPIPE, SIG_IGN);
+ 	do_exit++;
+ 	multi_bail();
+ }
+diff --git a/src/rtl_sdr.c b/src/rtl_sdr.c
+index e6537ca..2c93b57 100644
+--- a/src/rtl_sdr.c
++++ b/src/rtl_sdr.c
+@@ -74,6 +74,7 @@ sighandler(int signum)
+ #else
+ static void sighandler(int signum)
+ {
++	signal(SIGPIPE, SIG_IGN);
+ 	fprintf(stderr, "Signal caught, exiting!\n");
+ 	do_exit = 1;
+ 	rtlsdr_cancel_async(dev);
+diff --git a/src/rtl_tcp.c b/src/rtl_tcp.c
+index 84f5591..8781ba9 100644
+--- a/src/rtl_tcp.c
++++ b/src/rtl_tcp.c
+@@ -144,6 +144,7 @@ sighandler(int signum)
+ #else
+ static void sighandler(int signum)
+ {
++	signal(SIGPIPE, SIG_IGN);
+ 	fprintf(stderr, "Signal caught, exiting!\n");
+ 	rtlsdr_cancel_async(dev);
+ 	do_exit = 1;
+diff --git a/src/rtl_test.c b/src/rtl_test.c
+index 9b44097..b7f46ea 100644
+--- a/src/rtl_test.c
++++ b/src/rtl_test.c
+@@ -115,6 +115,7 @@ sighandler(int signum)
+ #else
+ static void sighandler(int signum)
+ {
++	signal(SIGPIPE, SIG_IGN);
+ 	fprintf(stderr, "Signal caught, exiting!\n");
+ 	do_exit = 1;
+ 	rtlsdr_cancel_async(dev);
+-- 
+2.39.2
+

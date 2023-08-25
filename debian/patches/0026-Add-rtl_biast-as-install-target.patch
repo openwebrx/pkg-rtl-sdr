@@ -1,7 +1,7 @@
 From c1faae295cb523d34ebfd1e007f244e8ee624ea3 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Sat, 6 Jun 2020 21:30:23 +0200
-Subject: [PATCH 26/33] Add rtl_biast as install target
+Subject: [PATCH 26/36] Add rtl_biast as install target
 
 Thanks to https://github.com/erikarn for pointing this out.
 ---
@@ -21,5 +21,5 @@ index 33faee7..de93044 100644
    DESTINATION ${CMAKE_INSTALL_BINDIR}
    )
 -- 
-2.30.2
+2.39.2
 

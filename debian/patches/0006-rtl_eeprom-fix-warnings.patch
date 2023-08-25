@@ -1,7 +1,7 @@
 From 3c263b745121d9f4df95fd06910a00eba98a2f11 Mon Sep 17 00:00:00 2001
 From: Steve Markgraf <steve@steve-m.de>
 Date: Fri, 1 Nov 2019 02:18:54 +0100
-Subject: [PATCH 06/33] rtl_eeprom: fix warnings
+Subject: [PATCH 06/36] rtl_eeprom: fix warnings
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -38,5 +38,5 @@ index f562d73..24be900 100644
  
  	if (ir_endpoint != 0)
 -- 
-2.30.2
+2.39.2
 

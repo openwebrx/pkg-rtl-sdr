@@ -1,7 +1,7 @@
 From ed0317e6a58c098874ac58b769cf2e609c18d9a5 Mon Sep 17 00:00:00 2001
 From: Eric Wild <ewild@sysmocom.de>
 Date: Sun, 2 Aug 2020 23:48:42 +0200
-Subject: [PATCH 27/33] cmake: populate pkgconfig file with prefix
+Subject: [PATCH 27/36] cmake: populate pkgconfig file with prefix
 
 Previously the prefix and related paths were not set.
 ---
@@ -25,5 +25,5 @@ index 2def354..d000f52 100644
      ${CMAKE_CURRENT_SOURCE_DIR}/librtlsdr.pc.in
      ${CMAKE_CURRENT_BINARY_DIR}/librtlsdr.pc
 -- 
-2.30.2
+2.39.2
 

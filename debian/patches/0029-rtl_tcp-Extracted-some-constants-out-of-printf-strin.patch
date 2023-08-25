@@ -1,7 +1,7 @@
 From 641c221fab3d11b372748c702526c7f6bad33b8d Mon Sep 17 00:00:00 2001
 From: David Neiss <davidaneiss@gmail.com>
 Date: Tue, 17 Aug 2021 15:43:44 -0400
-Subject: [PATCH 29/33] rtl_tcp: Extracted some constants out of printf strings
+Subject: [PATCH 29/36] rtl_tcp: Extracted some constants out of printf strings
 
 The help output contained constants that should print values
 based on code constants and not be hardcoded into the print strings.
@@ -73,5 +73,5 @@ index 995bc1b..ad930c8 100644
  	struct addrinfo *ai;
  	struct addrinfo *aiHead;
 -- 
-2.30.2
+2.39.2
 

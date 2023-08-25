@@ -31,4 +31,6 @@
 0031-rtl_fm-add-a-new-option-to-select-2nd-direct-samplin.patch
 0032-Fix-minGW-build.patch
 0033-lib-force-wait-state-after-cancel-of-usb-transfer.patch
-remove-old-libusb-workaround
+0034-lib-Stop-applying-workaround-for-libusb-1.0.9.patch
+0035-Fix-signal-handler-from-getting-stuck-in-an-endless-.patch
+0036-add-rtl-sdr-blog-v4-support.patch

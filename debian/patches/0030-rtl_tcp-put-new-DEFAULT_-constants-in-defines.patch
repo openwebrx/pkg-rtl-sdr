@@ -1,7 +1,7 @@
 From 3163b8817fec288e3aafae2a81d10ad01eed2852 Mon Sep 17 00:00:00 2001
 From: Oliver Smith <osmith@sysmocom.de>
 Date: Wed, 18 Aug 2021 09:09:25 +0200
-Subject: [PATCH 30/33] rtl_tcp: put new DEFAULT_* constants in defines
+Subject: [PATCH 30/36] rtl_tcp: put new DEFAULT_* constants in defines
 
 Fix failures with some GCC versions:
   /usr/src/packages/BUILD/src/rtl_tcp.c:90:24: error: initializer element is not constant
@@ -31,5 +31,5 @@ index ad930c8..89b1fb9 100644
  static SOCKET s;
  
 -- 
-2.30.2
+2.39.2
 

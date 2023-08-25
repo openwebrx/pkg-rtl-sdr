@@ -1,13 +1,15 @@
 #!/usr/bin/make -f
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 export DEB_HOST_MULTIARCH
+DEB_ZEROCOPY_OPTION=ON
+DEB_ZEROCOPY_OPTION=$(shell if [ $(DEB_BUILD_ARCH) = arm64 ] || [ $(DEB_BUILD_ARCH) = armel ] || [ $(DEB_BUILD_ARCH) = armhf ]; then echo "OFF" ; else echo "ON" ; fi)
 
 %:
 	dh $@ --buildsystem=cmake
 
 override_dh_auto_configure: debian/librtlsdr0.udev
 	dh_auto_configure --buildsystem=cmake -- -DDETACH_KERNEL_DRIVER=ON \
-						 -DENABLE_ZEROCOPY=ON \
+						 -DENABLE_ZEROCOPY=$DEB_ZEROCOPY_OPTION \
 						 -DINSTALL_UDEV_RULES=ON \
 						 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 						 -DCMAKE_VERBOSE_MAKEFILE=ON

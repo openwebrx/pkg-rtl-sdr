@@ -1,7 +1,7 @@
 From 8985b45e1fe1a5d50c5e1dc4c7c306705e602445 Mon Sep 17 00:00:00 2001
 From: "A. Maitland Bottoms" <bottoms@debian.org>
 Date: Sun, 3 Sep 2017 16:22:55 -0400
-Subject: [PATCH 18/33] rtl_tcp: Add IPv6 support
+Subject: [PATCH 18/36] rtl_tcp: Add IPv6 support
 
 I've prepared this patch in response to Debian bug #870804
 https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=870804
@@ -143,5 +143,5 @@ index da6057b..42b90cb 100644
  		memset(&dongle_info, 0, sizeof(dongle_info));
  		memcpy(&dongle_info.magic, "RTL0", 4);
 -- 
-2.30.2
+2.39.2
 

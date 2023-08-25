@@ -7,7 +7,7 @@ Build-Depends: cmake,
                libusb-1.0-0-dev [!kfreebsd-any],
                libusb2-dev [kfreebsd-any],
 	       pkg-config
-Standards-Version: 4.5.0
+Standards-Version: 4.6.2
 Homepage: http://sdr.osmocom.org/trac/wiki/rtl-sdr
 Vcs-Browser: https://salsa.debian.org/bottoms/pkg-rtl-sdr
 Vcs-Git: https://salsa.debian.org/bottoms/pkg-rtl-sdr.git

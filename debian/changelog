@@ -75,7 +75,7 @@ rtl-sdr (0.6~git) unstable; urgency=medium
 
   * New upstream release
 
- -- Harald Welte <laforge@gnumonks.org>  Sun, 06 Jun 2018 15:09:42 +0200
+ -- Harald Welte <laforge@gnumonks.org>  Wed, 06 Jun 2018 15:09:42 +0200
 
 rtl-sdr (0.5.4-1) unstable; urgency=medium
 

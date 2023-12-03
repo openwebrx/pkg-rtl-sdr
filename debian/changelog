@@ -1,3 +1,12 @@
+rtl-sdr (0.6.0-5.1) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * DEP17: Install udev rules into /usr, with (M10) protective diversion
+    against possible file loss as exhibited by Multi-Arch: same packages (P7).
+    Diversion code can be removed in forky+1. (Closes: #1056712)
+
+ -- Chris Boot <bootc@debian.org>  Fri, 24 Nov 2023 16:50:24 +0000
+
 rtl-sdr (0.6.0-5) unstable; urgency=medium
 
   * update to 0.6.0-36-g1261fbb

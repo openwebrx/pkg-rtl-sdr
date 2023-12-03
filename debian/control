@@ -5,7 +5,7 @@ Maintainer: A. Maitland Bottoms <bottoms@debian.org>
 # Warning: see README.source before back-porting this package
 Build-Depends: base-files (>= 13~),
                cmake,
-               debhelper (>= 12~),
+               debhelper-compat (= 13),
                dh-sequence-movetousr,
                libusb-1.0-0-dev [!kfreebsd-any],
                libusb2-dev [kfreebsd-any],

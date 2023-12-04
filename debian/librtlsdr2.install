@@ -1,0 +1,2 @@
+usr/lib/*/lib*.so.*
+debian/librtlsdr2.metainfo.xml usr/share/metainfo

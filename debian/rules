@@ -7,15 +7,15 @@ DEB_ZEROCOPY_OPTION=$(shell if [ $(DEB_BUILD_ARCH) = arm64 ] || [ $(DEB_BUILD_AR
 %:
 	dh $@ --buildsystem=cmake
 
-override_dh_auto_configure: debian/librtlsdr0.udev
+override_dh_auto_configure: debian/librtlsdr2.udev
 	dh_auto_configure --buildsystem=cmake -- -DDETACH_KERNEL_DRIVER=ON \
 						 -DENABLE_ZEROCOPY=$DEB_ZEROCOPY_OPTION \
 						 -DINSTALL_UDEV_RULES=ON \
 						 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 						 -DCMAKE_VERBOSE_MAKEFILE=ON
 
-debian/librtlsdr0.udev: rtl-sdr.rules
-	cp -p rtl-sdr.rules debian/librtlsdr0.udev
+debian/librtlsdr2.udev: rtl-sdr.rules
+	cp -p rtl-sdr.rules debian/librtlsdr2.udev
 
 override_dh_acc:
 	- dh_acc

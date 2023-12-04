@@ -8,8 +8,8 @@ set -e
 if [ "$1" = "remove" ] && [ "$DPKG_MAINTSCRIPT_PACKAGE_REFCOUNT" = "1" ]; then
     # Cleanup in case package is removed before upgrade is finished (postinst ran).
     dpkg-divert --package usr-is-merged --no-rename \
-        --divert /lib/udev/rules.d/60-librtlsdr0.rules.usr-is-merged \
-        --remove /lib/udev/rules.d/60-librtlsdr0.rules
+        --divert /lib/udev/rules.d/60-librtlsdr2.rules.usr-is-merged \
+        --remove /lib/udev/rules.d/60-librtlsdr2.rules
 fi
 # end-remove-after
 

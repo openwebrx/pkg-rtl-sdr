@@ -1,4 +1,6 @@
-rtl-sdr (0.6.0-6) experimental; urgency=medium
+rtl-sdr (2.0.1-1) experimental; urgency=medium
+
+  * New upstream release.
 
   [ Chris Boot ]
   * DEP17: Install udev rules into /usr, with (M10) protective diversion
@@ -8,10 +10,12 @@ rtl-sdr (0.6.0-6) experimental; urgency=medium
   [ A. Maitland Bottoms ]
   * Apply lintian fixes from the Janitor
     Remove 1 obsolete maintscript entry.
-    Set debhelper-compat version in Build-Depends. (uses-debhelper-compat-file)
-    Set upstream metadata fields: Repository. (upstream-metadata-file-is-missing)
-    Fix day-of-week for changelog entry 0.6~git. (debian-changelog-has-wrong-day-of-week)
+    Set debhelper-compat version in Build-Depends.
+    Set upstream metadata fields: Repository.
+    Fix day-of-week for changelog entry 0.6~git.
   * Update watch file to follow project to gitea.osmocom.org
+  * update to v2.0.1-1-g448a655
+  * upload to experimental for soversion bump and for #1057190
 
  -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 03 Dec 2023 16:59:23 -0500
 

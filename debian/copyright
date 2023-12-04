@@ -22,12 +22,12 @@ Copyright: 2013 Adam Cécile (Le_Vert) <gandalf@le-vert.net>
            2012,2013-2020 A. Maitland Bottoms <bottoms@debian.org>
 License: GPL-2.0+
 
-Files: debian/librtlsdr0.metainfo.xml
-Copyright: 2018-2020 A. Maitland Bottoms <bottoms@debian.org>
+Files: debian/librtlsdr2.metainfo.xml
+Copyright: 2018-2023 A. Maitland Bottoms <bottoms@debian.org>
 License: MIT
 
-Files: debian/librtlsdr0.udev
-Copyright: 2012, 2013, Osmocom rtl-sdr project
+Files: debian/librtlsdr2.udev
+Copyright: 2012, 2013, 2023, Osmocom rtl-sdr project
 License: GPL-3+
 
 Files: debian/rtl_adsb.1

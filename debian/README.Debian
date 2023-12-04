@@ -12,7 +12,7 @@ Having these rtl-sdr packages installed likely means that these
 devices should be available for the alternate software defined
 radio use.
 
-The librtlsdr0 package in Debian has configuration files to
+The librtlsdr2 package in Debian has configuration files to
 help manage the conflicting uses:
 
 1. Blacklists DVB-T kernel modules provided by the Linux kernel
@@ -25,7 +25,7 @@ contains lines to blacklist dvb_usb_rtl28xxu, e4000 and rtl2832
 kernel modules.
 
 Should you wish to use a device via the Linux video receiver software
-while still having the librtlsdr0 package installed you may edit
+while still having the librtlsdr2 package installed you may edit
 this file. (Placing a # at the beginning os a line makes it a comment.)
 
 Then unplug/plug the USB stick.
@@ -42,14 +42,16 @@ with the DETACH_KERNEL_DRIVER option.
 
 Devices are available to users in the plugdev group.
 
-The librtlsdr0 package installs these default rules:
-/lib/udev/rules.d/60-librtlsdr0.rules
+The librtlsdr2 package installs these default rules:
+/lib/udev/rules.d/60-librtlsdr2.rules
 
 If you have permissions issues, you may override these values
 with your own rules in /etc:
 
-/etc/udev/rules.d/60-librtlsdr0.rules
+/etc/udev/rules.d/60-librtlsdr2.rules
 
 After editing udev rules, run as root: 
  udevadm control --reload-rules
 
+
+ -- A. Maitland Bottoms <bottoms@debian.org>, Sun,  3 Dec 2023 19:32:56 -0500

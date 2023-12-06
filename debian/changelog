@@ -1,3 +1,11 @@
+rtl-sdr (2.0.1-2) unstable; urgency=medium
+
+  * upload to unstable
+  * keeping udev handling in case a bookworm-backports happens
+  * debian/rules takes upstream default for arm/arm64 (Closes: #1041701)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 05 Dec 2023 22:07:19 -0500
+
 rtl-sdr (2.0.1-1) experimental; urgency=medium
 
   * New upstream release.

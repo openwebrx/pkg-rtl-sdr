@@ -2,11 +2,8 @@ Source: rtl-sdr
 Section: comm
 Priority: optional
 Maintainer: A. Maitland Bottoms <bottoms@debian.org>
-# Warning: see README.source before back-porting this package
-Build-Depends: base-files (>= 13~),
-               cmake,
-               debhelper-compat (= 13),
-               dh-sequence-movetousr,
+Build-Depends: cmake,
+               debhelper (>= 12~),
                libusb-1.0-0-dev [!kfreebsd-any],
                libusb2-dev [kfreebsd-any],
 	       pkg-config

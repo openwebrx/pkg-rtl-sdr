@@ -1,3 +1,10 @@
+rtl-sdr (2.0.1-2+owrx1) UNRELEASED; urgency=low
+
+  * Backporting recent changes from Debian SID
+  * Undo udev relocation changes (not compatible with bookworm)
+
+ -- Jakob Ketterl <jakob.ketterl@gmx.de>  Sat, 30 Dec 2023 09:48:00 +0000
+
 rtl-sdr (2.0.1-2) unstable; urgency=medium
 
   * upload to unstable

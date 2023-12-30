@@ -1,0 +1,9 @@
+rtl-sdr (0.6.0-5.1) UNRELEASED; urgency=medium
+
+  In this version, librtlsdr2 has moved its udev rules file from /lib
+  to /usr/lib. If this package is back-ported to a release prior to
+  trixie this change must be revertedm, otherwise the dpkg-divert calls
+  in the maintainer scripts will cause breakage (dh_movetousr is a
+  no-op pre-trixie).
+
+ -- A. Maitland Bottoms <bottoms@debian.org>, Sun,  3 Dec 2023 19:31:08 -0500

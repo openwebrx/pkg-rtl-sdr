@@ -1,3 +1,32 @@
+rtl-sdr (2.0.1-2) unstable; urgency=medium
+
+  * upload to unstable
+  * keeping udev handling in case a bookworm-backports happens
+  * debian/rules takes upstream default for arm/arm64 (Closes: #1041701)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 05 Dec 2023 22:07:19 -0500
+
+rtl-sdr (2.0.1-1) experimental; urgency=medium
+
+  * New upstream release.
+
+  [ Chris Boot ]
+  * DEP17: Install udev rules into /usr, with (M10) protective diversion
+    against possible file loss as exhibited by Multi-Arch: same packages (P7).
+    Diversion code can be removed in forky+1. (Closes: #1056712)
+
+  [ A. Maitland Bottoms ]
+  * Apply lintian fixes from the Janitor
+    Remove 1 obsolete maintscript entry.
+    Set debhelper-compat version in Build-Depends.
+    Set upstream metadata fields: Repository.
+    Fix day-of-week for changelog entry 0.6~git.
+  * Update watch file to follow project to gitea.osmocom.org
+  * update to v2.0.1-1-g448a655
+  * upload to experimental for soversion bump and for #1057190
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 03 Dec 2023 16:59:23 -0500
+
 rtl-sdr (0.6.0-5+owrx1) UNRELEASED; urgency=low
 
   * Custom build for the OpenWebRX repo
@@ -72,7 +101,7 @@ rtl-sdr (0.6~git) unstable; urgency=medium
 
   * New upstream release
 
- -- Harald Welte <laforge@gnumonks.org>  Sun, 06 Jun 2018 15:09:42 +0200
+ -- Harald Welte <laforge@gnumonks.org>  Wed, 06 Jun 2018 15:09:42 +0200
 
 rtl-sdr (0.5.4-1) unstable; urgency=medium
 

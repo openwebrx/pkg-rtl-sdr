@@ -1,10 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: rtl-sdr
-Upstream-Contact: http://sdr.osmocom.org/trac/wiki/rtl-sdr
-Source:
- git clone git://git.osmocom.org/rtl-sdr.git
- The upstream package source tarball was generated from the tag:
- git archive --format=tar --prefix=rtl-sdr-0.5.2.7.3ab6/ 3ab6ff | gzip > ../rtl-sdr_0.5.2.7.3ab6.orig.tar.gz
+Upstream-Contact: https://osmocom.org/projects/rtl-sdr
 Comment:
  Debian packages sponsored by A. Maitland Bottoms,
  based upon packaging work by Adam Cécile.
@@ -26,12 +22,12 @@ Copyright: 2013 Adam Cécile (Le_Vert) <gandalf@le-vert.net>
            2012,2013-2020 A. Maitland Bottoms <bottoms@debian.org>
 License: GPL-2.0+
 
-Files: debian/librtlsdr0.metainfo.xml
-Copyright: 2018-2020 A. Maitland Bottoms <bottoms@debian.org>
+Files: debian/librtlsdr2.metainfo.xml
+Copyright: 2018-2023 A. Maitland Bottoms <bottoms@debian.org>
 License: MIT
 
-Files: debian/librtlsdr0.udev
-Copyright: 2012, 2013, Osmocom rtl-sdr project
+Files: debian/librtlsdr2.udev
+Copyright: 2012, 2013, 2023, Osmocom rtl-sdr project
 License: GPL-3+
 
 Files: debian/rtl_adsb.1
@@ -194,7 +190,7 @@ License: GPL-2.0+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>
+ along with this program. If not, see <https://www.gnu.org/licenses/>
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
@@ -211,7 +207,7 @@ License: GPL-3+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  .
  On Debian systems, the complete text of the GNU Lesser General
  Public License can be found in "/usr/share/common-licenses/GPL-3".

@@ -21,7 +21,7 @@ debian/librtlsdr-dev/usr/include/
 </headers>
 
 <libs>
-debian/librtlsdr0/usr/lib/
+debian/librtlsdr2/usr/lib/
 </libs>
 
 </descriptor>
